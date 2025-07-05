@@ -1,0 +1,100 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+  <span class="emoji-logo">🎵</span> LiveBeat
+</span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/'">Inicio</a>
+  <a [routerLink]="'/sobre-nosotros'">Sobre Nosotros</a>
+  <a [routerLink]="'/ayuda'">Ayuda</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/login" class="action-button login">
+    <span class="login-text">Iniciar Sesión</span>
+  </button>
+
+  <button routerLink="/registrar" class="action-button register">
+    <span class="register-text">Registrarse</span>
+  </button>
+</mat-toolbar>
+
+<div class="main-content">
+  <!-- Contenido -->
+  <div class="ayuda-container">
+    <!-- Izquierda -->
+    <div class="ayuda-left">
+      <h2 class="ayuda-titulo">
+        Preguntas Frecuentes <span class="emoji-ayuda">🎧</span>
+      </h2>
+
+      <input type="text" placeholder="Buscar una pregunta..." class="ayuda-buscador" />
+
+      <ul class="ayuda-lista">
+        <li>• ¿Cómo me registro en LiveBeat?</li>
+        <li>• No puedo iniciar sesión, ¿qué hago?</li>
+        <li>• ¿Cómo contacto a una banda?</li>
+        <li>• ¿Puedo cancelar un evento agendado?</li>
+        <li>• ¿LiveBeat es gratis o de pago?</li>
+      </ul>
+    </div>
+
+    <!-- Derecha -->
+    <div class="ayuda-right">
+      <h2 class="ayuda-titulo-contacto">
+        Contáctanos <span class="emoji-ayuda">👤</span>
+      </h2>
+
+      <p class="ayuda-subtitulo">
+        ¿Tienes inconvenientes con la App?<br />
+        Si no has podido solucionarlo, te ayudamos a resolverlo.
+      </p>
+
+      <textarea class="ayuda-textarea" placeholder="Describe tu problema aquí..."></textarea>
+
+      <button class="action-button register ayuda-boton">
+        <span class="register-text">Enviar</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<mat-toolbar class="footer">
+  <!-- Footer -->
+  <span class="footer-logo">
+    <span class="arrow-icon">▶</span>
+    LiveBeat
+  </span>
+
+  <div class="footer-center">
+    <a class="social-link" aria-label="Facebook">
+      <span class="social-text">🔵</span>
+    </a>
+    <a class="social-link" aria-label="Instagram">
+      <span class="social-text">🟣</span>
+    </a>
+    <a class="social-link" aria-label="YouTube">
+      <span class="social-text">🔴</span>
+    </a>
+    <a class="social-link" aria-label="Twitter">
+      <span class="social-text">⚫</span>
+    </a>
+  </div>
+
+  <div class="footer-right">
+    <p class="copyright">
+      © LiveBeat 2025. MADE IN PERU
+    </p>
+    <nav class="legal-links">
+      <a href="#" class="legal-link">Legal</a>
+      <a href="#" class="legal-link">Prensa</a>
+      <a href="#" class="legal-link">Términos</a>
+      <a href="#" class="legal-link">Privacidad</a>
+      <a href="#" class="legal-link">Cookies</a>
+    </nav>
+  </div>
+</mat-toolbar>

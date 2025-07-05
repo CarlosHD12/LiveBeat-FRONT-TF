@@ -1,0 +1,54 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Registrar un Contrato <span class="emoji-ayuda">✍️</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="acForm" class="form-artist-content">
+
+        <div class="campo-form">
+          <label>Artista:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione un artista</mat-label>
+            <mat-select formControlName="artista" required>
+              @for (org of listaA; track org.idA) {
+                <mat-option [value]="org.idA">
+                  {{ org.nombreArtista }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Contrato del Evento:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione un contrato</mat-label>
+            <mat-select formControlName="contrato" required>
+              @for (org of listaC; track org.idCo) {
+                <mat-option [value]="org.idCo">
+                  {{ org.evento.nombreEvento }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/artista-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+
+      </form>
+      <div *ngIf="mostrarError" class="mensaje-error-ac">
+        Por favor, selecciona un artista y un contrato antes de continuar
+      </div>
+    </div>
+  </mat-card>
+</div>

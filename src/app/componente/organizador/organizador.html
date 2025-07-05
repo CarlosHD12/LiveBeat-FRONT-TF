@@ -1,0 +1,36 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Formulario de Organizador <span class="emoji-ayuda">👤</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="organizadorForm" class="form-artist-content" (ngSubmit)="onSubmit()">
+        <div class="campo-form">
+          <label>Nombre:</label>
+          <input matInput formControlName="nombreOrganizador" placeholder="Ingrese su nombre" />
+        </div>
+
+        <div class="campo-form">
+          <label>Dirección:</label>
+          <input matInput formControlName="direccion" placeholder="Ingrese su dirección" />
+        </div>
+
+        <div class="campo-form">
+          <label>Organización:</label>
+          <input matInput formControlName="organizacion" placeholder="Ingrese su organización" />
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/artista-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

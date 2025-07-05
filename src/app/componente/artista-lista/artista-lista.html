@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="idA">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.idA}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombreArtista">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Artístico </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreArtista}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="genero">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Género </th>
+      <td mat-cell *matCellDef="let element"> {{element.genero}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="biografia">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Biografía </th>
+      <td mat-cell *matCellDef="let element"> {{element.biografia}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="disponible">
+      <th mat-header-cell *matHeaderCellDef> Disponible </th>
+      <td mat-cell *matCellDef="let element"> {{element.disponible}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="canciones">
+      <th mat-header-cell *matHeaderCellDef> Canciones </th>
+      <td mat-cell *matCellDef="let element"> {{element.canciones}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion01">
+      <th mat-header-cell *matHeaderCellDef> Editar </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary"
+                [routerLink] = "['/Anuevo-edit', element.idA]">
+          <span class="material-icons">update</span>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+

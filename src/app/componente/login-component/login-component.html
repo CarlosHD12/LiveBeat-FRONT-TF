@@ -1,0 +1,48 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Iniciar Sesión
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="loginForm" class="form-artist-content" (ngSubmit)="onSubmit()">
+
+        <div class="campo-form">
+          <label>Usuario:</label>
+          <input matInput formControlName="username" placeholder="Ingrese su usuario" />
+        </div>
+
+        <div class="campo-form">
+          <label>Password:</label>
+          <input matInput type="password" formControlName="password" placeholder="Ingrese su password" />
+        </div>
+
+        <button type="submit" class="action-button register">
+          <span class="register-text">Iniciar Sesión</span>
+        </button>
+
+        <div>
+          <p class="texto-auxiliar">
+            <a routerLink="/ayuda" class="enlace-registrar">¿Olvidaste tu contraseña?</a>
+          </p>
+
+
+          <!-- Texto de registro -->
+        <p class="texto">¿Es nuevo en LiveBeat?
+          <a routerLink="/registrar" class="enlace-registrar">Crear una cuenta</a>
+        </p>
+        </div>
+
+      </form>
+      <!-- Mensaje de éxito -->
+      <div *ngIf="successLogin" class="mensaje-login-success">
+        {{ successLogin }}
+      </div>
+
+      <!-- Mensaje de error -->
+      <div *ngIf="errorLogin" class="mensaje-login-error">
+        {{ errorLogin }}
+      </div>
+    </div>
+  </mat-card>
+</div>

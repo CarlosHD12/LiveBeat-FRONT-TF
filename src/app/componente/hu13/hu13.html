@@ -1,0 +1,65 @@
+<mat-card>
+  <mat-card-title>Listado de Pagos por Evento</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+      <!-- Campo: Seleccionar Evento -->
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona un evento</mat-label>
+        <mat-select formControlName="evento" required>
+          @for (evento of listaEventos; track evento.idE) {
+            <mat-option [value]="evento.idE">
+              {{ evento.nombreEvento }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botón: Buscar Pagos -->
+      <button mat-raised-button color="primary" type="submit">Buscar Pagos</button>
+
+      <!-- Tabla: Mostrar resultados -->
+      <div *ngIf="dataSource.data.length > 0; else noData">
+        <h3>Pagos del evento</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- ID del Pago -->
+          <ng-container matColumnDef="idP">
+            <th mat-header-cell *matHeaderCellDef>ID Pago</th>
+            <td mat-cell *matCellDef="let pago">{{ pago.idP }}</td>
+          </ng-container>
+
+          <!-- Fecha del Pago -->
+          <ng-container matColumnDef="fechaPago">
+            <th mat-header-cell *matHeaderCellDef>Fecha del Pago</th>
+            <td mat-cell *matCellDef="let pago">{{ pago.fechaPago | date }}</td>
+          </ng-container>
+
+          <!-- Monto -->
+          <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef>Monto</th>
+            <td mat-cell *matCellDef="let pago">S/. {{ pago.monto | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <!-- Estado del Pago -->
+          <ng-container matColumnDef="estadoPago">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let pago">
+              {{ pago.estadoPago ? 'Pagado' : 'Pendiente' }}
+            </td>
+          </ng-container>
+
+          <!-- Cabecera y filas -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <!-- Mensaje si no hay datos -->
+      <ng-template #noData>
+        <p>No se encontraron pagos para este evento.</p>
+      </ng-template>
+
+    </form>
+  </mat-card-content>
+</mat-card>

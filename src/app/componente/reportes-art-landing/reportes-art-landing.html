@@ -1,0 +1,241 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+  <span class="emoji-logo">🎵</span> LiveBeat
+</span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/artista-inicio'">Inicio</a>
+  <a [routerLink]="'/ac'">Contrato</a>
+  <a [routerLink]="'/reportesART-inicio'">Reportes</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/artista" class="action-button login">
+    <span class="login-text">+ Artista</span>
+  </button>
+</mat-toolbar>
+
+<div class="landing-container">
+      <div class="encabezado-hu22">
+
+        <mat-card-title class="titulo-hu22">
+          Eventos en los que Brillas: Tu Trayectoria en Escena
+        </mat-card-title>
+
+        <mat-card-subtitle class="subtitulo-hu22">
+          Aquí puedes visualizar todos los eventos donde has sido contratado.<br>
+          Revisa fechas, montos y asegúrate de que cada presentación cuente.
+        </mat-card-subtitle>
+
+        <!-- CÍRCULO ANIMADO -->
+        <div class="splash-overlay" *ngIf="showSplash" [ngStyle]="splashStyles"></div>
+        <div class="boton-container">
+          <button (click)="triggerSplash($event)" mat-raised-button class="comenzar">
+            <span class="mat-icon">🎉</span>
+            Ver Eventos
+          </button>
+      </div>
+  </div>
+
+  <mat-toolbar class="canciones">
+    <!-- IZQUIERDA: Título y subtítulo -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">Tus Canciones en Escala Mayor</h2>
+      <p>
+        Explora tu repertorio ordenado por duración.<br />
+        Desde épicas sinfonías hasta breves joyitas sonoras.
+      </p>
+
+      <!-- Formulario: Selección de Artista -->
+      <form [formGroup]="calificacionForm" (ngSubmit)="listarCancionesS()" class="formulario-canciones">
+        <mat-form-field appearance="outline" class="campo-form">
+          <mat-label>Artista</mat-label>
+          <mat-select formControlName="artista" required>
+            @for (a of listaA; track a.idA) {
+              <mat-option [value]="a.idA">
+                {{ a.nombreArtista }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <!-- BOTÓN "Cerrar" -->
+        <button mat-raised-button type="submit" class="action-button cerrar">
+          <span class="login-text">Ver Canciones</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- DERECHA: Lista con scroll -->
+    <div class="tarjetas-canciones-scroll" *ngIf="dataSource.data.length > 0; else sinCanciones">
+      <mat-card *ngFor="let cancion of dataSource.data" class="tarjeta-cancion">
+        <mat-card-title>{{ cancion.titulo }}</mat-card-title>
+        <mat-card-content>
+          <p>Duración: {{ cancion.duracion }} min</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Contenedor cuando no hay canciones -->
+    <ng-template #sinCanciones>
+      <div class="xD">
+        <p class="mensaje-vacio">Aún no hay canciones registradas para este artista.</p>
+      </div>
+    </ng-template>
+
+  </mat-toolbar>
+
+  <div class="planes-container-horizontal">
+    <!-- Plan Premium -->
+    <div class="plan-horizontal">
+      <div class="plan-icon-box">
+        <div class="plan-emoji">🎶</div>
+      </div>
+
+      <div class="plan-info">
+        <h3 class="plan-titulo">Tu Voz, Su Opinión</h3>
+        <p class="plan-subtitulo">Descubre cómo te perciben los organizadores, filtra críticas constructivas y celebra tus valoraciones más altas.</p>
+
+
+        <button routerLink="/hu24" class="action-button login plan-boton">
+          <span class="login-text">Ver Calificaciones</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <mat-toolbar class="hu25">
+      <!-- IZQUIERDA -->
+      <div class="zona-izquierda">
+        <h2 class="canciones-titulo">🎉 Eventos Activos para Ti</h2>
+        <p class="canciones-subtitulo">
+          Aquí puedes visualizar todos los eventos con contratos disponibles.<br>
+          ¡Explora oportunidades, elige tu escenario y deja tu huella!
+        </p>
+        <p class="canciones-subtitulo2">
+          Tu próximo show podría estar más cerca de lo que crees.
+        </p>
+        <button mat-raised-button color="accent" (click)="cargarEventos()" class="comenzar">
+          <span class="mat-icon">🔍</span>
+          Ver Eventos Disponibles
+        </button>
+      </div>
+
+      <!-- DERECHA -->
+      <div class="tarjetas-canciones-scroll" *ngIf="dataSource2.data.length > 0">
+        <mat-card *ngFor="let evento of dataSource2.data" class="tarjeta-cancion">
+          <mat-card-title>{{ evento.nombreEvento }}</mat-card-title>
+          <mat-card-content>
+            <p>Dirección: {{ evento.direccion }}</p>
+            <p>Fecha: {{ evento.fecha | date }}</p>
+            <p>Tipo: {{ evento.tipoEvento }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- MENSAJE SI NO HAY EVENTOS -->
+      <div class="xD" *ngIf="dataSource2.data.length === 0">
+        <p class="mensaje-vacio">Aún no hay eventos disponibles para registrarte.</p>
+      </div>
+  </mat-toolbar>
+
+  <div class="contenedor-ganancias">
+    <!-- IZQUIERDA: Título + Texto -->
+    <div class="info-ganancia-artista">
+      <h2 class="canciones-titulo3">💰 Total Ganado por Contratos</h2>
+      <p class="canciones-subtitulo">
+        Selecciona un artista y descubre cuánto has facturado en total.<br>
+        Porque tu talento no solo brilla, también cobra.
+      </p>
+    </div>
+
+    <!-- ABAJO: Tarjeta con el formulario -->
+    <mat-card class="tarjeta-form-ganancia">
+      <mat-card-content>
+
+        <form [formGroup]="calificacionForm" (ngSubmit)="onSubmit()" class="formulario-ganancia">
+          <!-- Texto + Selector -->
+          <div class="fila-artista-ganancia">
+            <p class="texto-artista-ganancia">Elige un artista para calcular su total</p>
+            <mat-form-field appearance="outline" class="selector-artista-ganancia">
+              <mat-label>Artista</mat-label>
+              <mat-select formControlName="artista" required>
+                @for (a of listaA; track a.idA) {
+                  <mat-option [value]="a.idA">
+                    {{ a.nombreArtista }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <button mat-raised-button type="submit" class="action-button total">
+            <span class="total-text">Mostrar Total</span>
+          </button>
+          <!-- Resultado -->
+          <div *ngIf="dataSource3.data.length > 0; else noGanancia" class="contenedor-total-ganado">
+            <mat-card class="tarjeta-resultado-ganancia">
+              <mat-card-title class="titulo-total-ganado">Total Pagado</mat-card-title>
+              <mat-card-content>
+                <p class="monto-total-ganado">
+                  S/. {{ dataSource3.data[0]?.totalPagado | number:'1.2-2' }}
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <ng-template #noGanancia>
+            <div class="mensaje-sin-ganancia">
+              <p class="texto-sin-ganancia">No se encontraron registros de pagos.</p>
+            </div>
+          </ng-template>
+
+
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+  <!-- FOOTER -->
+  <mat-toolbar class="footer">
+    <!-- Sección izquierda: Logo y texto -->
+    <span class="footer-logo">
+      <span class="arrow-icon">▶</span>
+      LiveBeat
+    </span>
+
+    <div class="footer-center">
+      <a class="social-link" aria-label="Facebook">
+        <span class="social-text">🔵</span>
+      </a>
+      <a class="social-link" aria-label="Instagram">
+        <span class="social-text">🟣</span>
+      </a>
+      <a class="social-link" aria-label="YouTube">
+        <span class="social-text">🔴</span>
+      </a>
+      <a class="social-link" aria-label="Twitter">
+        <span class="social-text">⚫</span>
+      </a>
+    </div>
+
+    <!-- Sección derecha: Información legal -->
+    <div class="footer-right">
+      <p class="copyright">
+        © LiveBeat 2025. MADE IN PERU
+      </p>
+      <nav class="legal-links">
+        <a href="#" class="legal-link">Legal</a>
+        <a href="#" class="legal-link">Prensa</a>
+        <a href="#" class="legal-link">Términos</a>
+        <a href="#" class="legal-link">Privacidad</a>
+        <a href="#" class="legal-link">Cookies</a>
+      </nav>
+    </div>
+  </mat-toolbar>

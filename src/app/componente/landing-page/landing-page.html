@@ -1,0 +1,159 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+    <span class="emoji-logo">🎵</span> LiveBeat
+  </span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/'">Inicio</a>
+  <a [routerLink]="'/sobre-nosotros'">Sobre Nosotros</a>
+  <a [routerLink]="'/ayuda'">Ayuda</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/login" class="action-button login">
+    <span class="login-text">Iniciar Sesión</span>
+  </button>
+
+  <button routerLink="/login" class="action-button register">
+    <span class="register-text">Registrarse</span>
+  </button>
+</mat-toolbar>
+
+<div class="landing-container">
+  <div class="contenido-principal">
+
+    <!-- CONTENEDOR HORIZONTAL: IZQUIERDA CONTENIDO / DERECHA EMOTE -->
+    <div class="contenido-y-emoji">
+
+      <!-- IZQUIERDA -->
+      <div class="hero-content-left">
+        <h1 class="titulo-principal">Conecta con el ritmo perfecto para tu evento</h1>
+        <p class="subtexto">
+          LiveBeat es la plataforma donde anfitriones y organizadores encuentran y contratan bandas de música en vivo de forma rápida, segura y personalizada.
+        </p>
+
+        <!-- CÍRCULO ANIMADO -->
+        <div class="splash-overlay" *ngIf="showSplash" [ngStyle]="splashStyles"></div>
+
+        <!-- BOTÓN "Comenzar" -->
+        <button (click)="triggerSplash($event)" mat-raised-button class="comenzar">
+          <span class="mat-icon">🔥</span>
+          Comenzar
+        </button>
+      </div>
+
+      <!-- DERECHA: EMOJI CIRCULAR -->
+      <div class="emoji-container-right">
+        <span class="emoji-decorativo">🎶</span>
+      </div>
+    </div>
+  </div>
+
+    <!-- PREGUNTA -->
+    <div class="porque-container">
+      <h2 class="titulo-pregunta">¿Por qué LiveBeat?</h2>
+
+      <!-- Carrusel horizontal arrastrable -->
+      <div class="carousel">
+        <div class="carousel-item" *ngFor="let item of razones">
+          <h3 class="item-titulo">{{ item.titulo }}</h3>
+          <p class="item-descripcion">{{ item.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de suscripciones -->
+    <h2 class="titulo-suscripcion">Escoge tu suscripción</h2>
+    <p class="subtitulo-suscripcion">
+      Todos los planes incluyen un periodo de prueba gratuito de 14 días. Sin compromiso. Cancela en cualquier momento.
+    </p>
+
+    <div class="planes-container-horizontal">
+      <!-- Plan Gratis -->
+      <div class="plan-horizontal">
+        <div class="plan-icon-box">
+          <div class="plan-emoji">🎵</div>
+        </div>
+
+        <div class="plan-info">
+          <h3 class="plan-titulo">Nuestro plan para principiantes</h3>
+          <p class="plan-subtitulo">$3.00 al mes</p>
+
+          <ul class="plan-lista">
+            <li class="plan-item">Accede a más de 2 millones de pistas sin pagar nada.</li>
+            <li class="plan-item">Disfruta de música sin anuncios, estés donde estés.</li>
+            <li class="plan-item">Recibe mezclas y recomendaciones cada semana.</li>
+          </ul>
+
+          <button routerLink="/registro" class="action-button login plan-boton">
+            <span class="login-text">Probar gratis</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Plan Premium -->
+      <div class="plan-horizontal">
+        <div class="plan-icon-box">
+          <div class="plan-emoji">🎶</div>
+        </div>
+
+        <div class="plan-info">
+          <h3 class="plan-titulo">Nuestro plan más deseado</h3>
+          <p class="plan-subtitulo">$12.99 al mes</p>
+
+          <ul class="plan-lista">
+            <li class="plan-item">Accede a todo el catálogo de bandas, sin límites ni restricciones</li>
+            <li class="plan-item">Contratos personalizados con soporte 24/7 en tiempo real</li>
+            <li class="plan-item">Prioridad en reservas y eventos destacados</li>
+          </ul>
+
+          <button routerLink="/registro-premium" class="action-button login plan-boton">
+            <span class="login-text">Ir Premium</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <mat-toolbar class="footer">
+    <!-- Sección izquierda: Logo y texto -->
+    <span class="footer-logo">
+      <span class="arrow-icon">▶</span>
+      LiveBeat
+    </span>
+
+    <div class="footer-center">
+      <a class="social-link" aria-label="Facebook">
+        <span class="social-text">🔵</span>
+      </a>
+      <a class="social-link" aria-label="Instagram">
+        <span class="social-text">🟣</span>
+      </a>
+      <a class="social-link" aria-label="YouTube">
+        <span class="social-text">🔴</span>
+      </a>
+      <a class="social-link" aria-label="Twitter">
+        <span class="social-text">⚫</span>
+      </a>
+    </div>
+
+    <!-- Sección derecha: Información legal -->
+    <div class="footer-right">
+      <p class="copyright">
+        © LiveBeat 2025. MADE IN PERU
+      </p>
+      <nav class="legal-links">
+        <a href="#" class="legal-link">Legal</a>
+        <a href="#" class="legal-link">Prensa</a>
+        <a href="#" class="legal-link">Términos</a>
+        <a href="#" class="legal-link">Privacidad</a>
+        <a href="#" class="legal-link">Cookies</a>
+      </nav>
+    </div>
+  </mat-toolbar>
+

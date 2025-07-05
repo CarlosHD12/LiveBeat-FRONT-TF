@@ -1,0 +1,43 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Registrar nuevo Usuario
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form class="form-artist-content">
+
+        <div class="campo-form">
+          <label>Nombre de Usuario:</label>
+          <input matInput placeholder="Ingrese su nombre de usuario" />
+        </div>
+
+        <div class="campo-form">
+          <label>Contraseña:</label>
+          <input matInput type="password" placeholder="Ingrese su contraseña" />
+        </div>
+
+        <div class="campo-form">
+          <label>Rol:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione un rol</mat-label>
+            <mat-select required>
+              <mat-option value="ARTISTA">Artista</mat-option>
+              <mat-option value="ORGANIZADOR">Organizador</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+          <button type="button" class="action-button register" routerLink="/login">
+            <span class="register-text">Registrar</span>
+          </button>
+
+        <p class="texto-auxiliar">
+          ¿Ya tiene una cuenta?
+          <a routerLink="/login" class="enlace-registrar">Inicie sesión</a>
+        </p>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

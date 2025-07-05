@@ -1,0 +1,61 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Formulario de Calificación <span class="emoji-ayuda">⭐</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="calificacionForm" class="form-artist-content">
+
+        <div class="campo-form">
+          <label>Comentario:</label>
+          <input matInput formControlName="comentario" placeholder="Ingrese su comentario" />
+        </div>
+
+        <div class="campo-form">
+          <label>Recomendación:</label>
+          <input matInput formControlName="recomendacion" placeholder="True / False" />
+        </div>
+
+        <div class="campo-form">
+          <label>Valoración:</label>
+          <input matInput formControlName="valoracion" placeholder="Ingrese su valoración (max 10)" />
+        </div>
+
+        <div class="campo-form">
+          <label>Organizador:</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione un organizador</mat-label>
+            <mat-select formControlName="organizador" required>
+              @for (org of listaO; track org.idO) {
+                <mat-option [value]="org.idO">{{ org.nombreOrganizador }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Artista:</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione un artista</mat-label>
+            <mat-select formControlName="artista" required>
+              @for (art of listaA; track art.idA) {
+                <mat-option [value]="art.idA">{{ art.nombreArtista }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/artista-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

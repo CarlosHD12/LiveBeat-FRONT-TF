@@ -1,0 +1,70 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Formulario de Pago <span class="emoji-ayuda">💰</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="pagoForm" class="form-artist-content">
+
+        <div class="campo-formF">
+          <label>Fecha del Pago:</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione la fecha del pago</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaPago" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Monto:</label>
+          <input matInput formControlName="monto" placeholder="Ingrese el Monto del Pago" />
+        </div>
+
+        <div class="campo-form">
+          <label>Estado del Pago:</label>
+          <input matInput formControlName="estadoPago" placeholder="True = Pagado / False = Pendiente" />
+        </div>
+
+        <div class="campo-form">
+          <label>Método de Pago:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione el método</mat-label>
+            <mat-select formControlName="metodoPago">
+              @for (esp of metodoPago; track esp.value) {
+                <mat-option [value]="esp.value">{{ esp.nombre }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Contrato:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione un contrato</mat-label>
+            <mat-select formControlName="contrato" [(value)]="idContratoSeleccionado" required>
+              @for (a of lista; track a.idCo) {
+                <mat-option [value]="a.idCo">
+                  {{ a.idCo }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/pago-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

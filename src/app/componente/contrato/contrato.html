@@ -1,0 +1,58 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Formulario de Contrato <span class="emoji-ayuda">📄</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="contratoForm" class="form-artist-content">
+
+        <div class="campo-formF">
+          <label>Fecha:</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione la fecha del contrato</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fechaContrato" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Monto Total:</label>
+          <input matInput formControlName="montoTotal" placeholder="Ingrese el monto total" />
+        </div>
+
+        <div class="campo-form">
+          <label>Estado:</label>
+          <input matInput formControlName="estado" placeholder="True = Pendiente / False = Terminado" />
+        </div>
+
+        <div class="campo-form">
+          <label>Evento:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione el evento (1 por Contrato)</mat-label>
+            <mat-select formControlName="evento" [(value)]="idEventoSeleccionado" required>
+              @for (a of lista; track a.idE) {
+                <mat-option [value]="a.idE">
+                  {{ a.nombreEvento }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/contrato-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

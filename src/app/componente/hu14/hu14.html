@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-title>Monto Total de Pagos Realizados</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+      <!-- Campo: Seleccionar Contrato -->
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona un Contrato</mat-label>
+        <mat-select formControlName="contrato" required>
+          @for (pago of listaContratos; track pago.idCo) {
+            <mat-option [value]="pago.idCo">
+              {{ pago.idCo }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botón: Buscar Monto Total -->
+      <button mat-raised-button color="primary" type="submit">Buscar Monto Total</button>
+
+      <!-- Tabla: Mostrar resultados -->
+      <div *ngIf="dataSource.data.length > 0; else noData">
+        <h3>Resumen de Pagos Realizados</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- ID del Contrato -->
+          <ng-container matColumnDef="idCo">
+            <th mat-header-cell *matHeaderCellDef>ID Contrato</th>
+            <td mat-cell *matCellDef="let pago">{{ pago.idCo }}</td>
+          </ng-container>
+
+          <!-- Monto Total -->
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Monto Total</th>
+            <td mat-cell *matCellDef="let pago">S/. {{ pago.total | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <!-- Cabecera y filas -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <!-- Mensaje si no hay datos -->
+      <ng-template #noData>
+        <p>No se encontraron pagos realizados para este contrato.</p>
+      </ng-template>
+
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-title>Cantidad de Contratos por Artista</mat-card-title>
+  <mat-card-content>
+
+    <!-- Botón para recargar datos -->
+    <button mat-raised-button color="primary" (click)="cargarDatos()">
+      Cargar Datos
+    </button>
+
+    <!-- Tabla para mostrar resultados -->
+    <div *ngIf="dataSource.data.length > 0; else noData">
+      <h3>Listado de artistas y sus contratos</h3>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Nombre del Artista -->
+        <ng-container matColumnDef="nombreArtista">
+          <th mat-header-cell *matHeaderCellDef>Nombre del Artista</th>
+          <td mat-cell *matCellDef="let item">{{ item.nombreArtista }}</td>
+        </ng-container>
+
+        <!-- Cantidad de Contratos -->
+        <ng-container matColumnDef="cantidadContratos">
+          <th mat-header-cell *matHeaderCellDef>Cantidad de Contratos</th>
+          <td mat-cell *matCellDef="let item">{{ item.cantidadContratos }}</td>
+        </ng-container>
+
+        <!-- Cabecera y filas -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <!-- Mensaje si no hay datos -->
+    <ng-template #noData>
+      <p>No se encontraron artistas con contratos.</p>
+    </ng-template>
+
+  </mat-card-content>
+</mat-card>

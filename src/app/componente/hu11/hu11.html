@@ -1,0 +1,63 @@
+<mat-card>
+  <mat-card-title>Listado de Contratos Pendientes</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+      <!-- Campo: Seleccionar Organizador -->
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona un organizador</mat-label>
+        <mat-select formControlName="organizador" required>
+          @for (org of listaOrganizadores; track org.idO) {
+            <mat-option [value]="org.idO">{{ org.nombreOrganizador }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botón: Buscar Contratos Pendientes -->
+      <button mat-raised-button color="primary" type="submit">Buscar Contratos Pendientes</button>
+
+      <!-- Tabla: Mostrar resultados -->
+      <div *ngIf="dataSource.data.length > 0; else noData">
+        <h3>Contratos Pendientes</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- ID del contrato -->
+          <ng-container matColumnDef="idCo">
+            <th mat-header-cell *matHeaderCellDef>ID Contrato</th>
+            <td mat-cell *matCellDef="let contrato">{{ contrato.idCo }}</td>
+          </ng-container>
+
+          <!-- Fecha del contrato -->
+          <ng-container matColumnDef="fechaContrato">
+            <th mat-header-cell *matHeaderCellDef>Fecha del Contrato</th>
+            <td mat-cell *matCellDef="let contrato">{{ contrato.fechaContrato | date }}</td>
+          </ng-container>
+
+          <!-- Monto total -->
+          <ng-container matColumnDef="montoTotal">
+            <th mat-header-cell *matHeaderCellDef>Monto Total</th>
+            <td mat-cell *matCellDef="let contrato">S/. {{ contrato.montoTotal | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <!-- Estado del Pago -->
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let contrato">
+              {{ contrato.estado ? 'Pagado' : 'Pendiente' }}
+            </td>
+          </ng-container>
+
+          <!-- Cabecera y filas -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <!-- Mensaje si no hay datos -->
+      <ng-template #noData>
+        <p>No se encontraron contratos pendientes para este organizador.</p>
+      </ng-template>
+
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,426 @@
+/* siempre copiar */
+* {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+body {
+  color: #121212;
+  display: flex;
+  flex-direction: column;
+}
+
+.landing-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contenido-principal {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* NAVBAR */
+.toolbar {
+  display: flex;
+  min-height: 10vh;
+  align-items: center;
+  background-color: #1E1E1E;
+  box-shadow: 0 10px 4px rgba(0, 0, 0, 0.43);
+}
+
+.logo {
+  font-size: 2.7rem;
+  font-weight: normal;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.spacer {
+  flex: 22 1 auto;
+}
+
+.toolbar a {
+  font-size: 30px;
+  text-decoration: none;
+  margin: 0 80px;
+  font-weight: normal;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease-in-out;
+}
+
+.toolbar a:hover {
+  background: none;
+  -webkit-text-fill-color: white;
+  color: white;
+}
+
+.action-button {
+  font-size: 20px;
+  margin-left: 20px;
+  font-weight: normal;
+}
+
+.login {
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(#1E1E1E, #1E1E1E) padding-box,
+  linear-gradient(90deg, #FF7200, #FFB100) border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+}
+
+.login-text {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.login:hover {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  border: 2px solid white;
+}
+
+.login:hover .login-text {
+  background: none;
+  color: white;
+  -webkit-text-fill-color: white;
+}
+
+.register {
+  border: 2px solid #2a2a2a;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  padding: 8px 20px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+}
+
+
+.register:hover {
+  background: transparent;
+  border-color: white;
+}
+
+.register:hover .register-text {
+  color: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Footer */
+.footer {
+  padding: 40px;
+  min-height: 15vh;
+  margin-top: 40px;
+  background-color: #1E1E1E;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  box-shadow: 0 10px 4px rgba(0, 0, 0, 0.43);
+}
+
+.footer-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 30px;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer-left:hover {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+}
+
+.arrow-icon {
+  font-size: 20px;
+}
+
+.footer-center {
+  display: flex;
+  gap: 30px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+
+.social-link:hover {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  transform: scale(1.1);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-size: 1px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.copyright {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.legal-links {
+  display: flex;
+  gap: 10px;
+}
+
+.legal-link {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.3s ease;
+}
+
+.legal-link:hover {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.emoji-logo {
+  display: inline-block;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2rem;
+  margin-right: 1px;
+  vertical-align: middle;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  background-color: #121212;
+  flex-direction: column;
+  padding: 6.5rem;
+}
+/* siempre copiar */
+
+.ayuda-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* 👈 sube el contenido */
+  gap: 4rem;
+  padding: 2rem 3rem;
+  flex-wrap: wrap;
+  background-color: #121212;
+  color: white;
+}
+
+.ayuda-left,
+.ayuda-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+.ayuda-titulo {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(30deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.emoji-ayuda {
+  background: linear-gradient(30deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: normal;
+}
+
+.ayuda-buscador {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  outline: none;
+  margin-bottom: 1.5rem;
+  background-color: #121212;
+  color: white;
+  border: 2px solid transparent;
+  background-clip: padding-box, border-box;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(90deg, #FF7200, #FFB100);
+}
+
+/* Placeholder degradado */
+.ayuda-buscador::placeholder {
+  background: linear-gradient(#FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: normal;
+}
+
+.ayuda-lista {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1rem;
+  line-height: 2rem;
+  color: white;
+  font-weight: normal;
+}
+
+.ayuda-lista li {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.ayuda-lista li:hover {
+  background: linear-gradient(10deg,#FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.ayuda-subtitulo {
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+  font-weight: normal;
+}
+
+.ayuda-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  background-color: #1e1e1e;
+  color: white;
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+}
+
+.ayuda-boton {
+  padding: 10px 50px;
+  font-size: 1.1rem;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+.ayuda-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ayuda-titulo-contacto {
+  font-size: 2.5rem;
+  font-weight: normal;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.1rem;
+}
+
+.ayuda-subtitulo {
+  font-size: 1.1rem;
+  color: white;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  max-width: 550px;
+  font-weight: normal;
+}
+
+.ayuda-textarea {
+  width: 100%;
+  max-width: 450px;
+  min-height: 180px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-color: #121212;
+  color: white;
+  margin-bottom: 1.5rem;
+  outline: none;
+  resize: vertical;
+
+  /* borde degradado */
+  background-clip: padding-box, border-box;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(90deg, #FF7200, #FFB100);
+  font-weight: normal;
+}
+
+/* placeholder degradado */
+.ayuda-textarea::placeholder {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: normal;
+}

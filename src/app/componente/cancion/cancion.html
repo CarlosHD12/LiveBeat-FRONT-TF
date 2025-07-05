@@ -1,0 +1,56 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      {{ edicion ? 'Editar Canción' : 'Formulario de Canción' }} <span class="emoji-ayuda">🎶</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="cancionForm" class="form-artist-content">
+
+        <!-- Campo: Título -->
+        <div class="campo-form">
+          <label>Título:</label>
+          <input matInput formControlName="titulo" placeholder="Ingrese el título de la canción" />
+        </div>
+
+        <!-- Campo: Duración -->
+        <div class="campo-form">
+          <label>Duración:</label>
+          <input matInput formControlName="duracion" placeholder="Ingrese la duración en minutos" />
+        </div>
+
+        <!-- Campo: Artista -->
+        <div class="campo-form">
+          <label>Artista:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Selecciona un artista</mat-label>
+            <mat-select
+              formControlName="artista"
+              [(value)]="idArtistaSeleccionado"
+              required>
+              @for (a of lista; track a.idA) {
+                <mat-option [value]="a.idA">
+                  {{ a.nombreArtista }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Botones -->
+        <div class="botones-form">
+          <button routerLink="/artista-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">
+              {{ edicion ? 'Actualizar' : 'Registrar' }}
+            </span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

@@ -1,0 +1,194 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+  <span class="emoji-logo">🎵</span> LiveBeat
+</span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/artista-inicio'">Inicio</a>
+  <a [routerLink]="'/ac'">Contrato</a>
+  <a [routerLink]="'/reportesART-inicio'">Reportes</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/artista" class="action-button login">
+    <span class="login-text">+ Artista</span>
+  </button>
+</mat-toolbar>
+
+<div class="landing-container">
+  <div class="contenido-principal">
+
+    <!-- CONTENEDOR HORIZONTAL: IZQUIERDA CONTENIDO / DERECHA EMOTE -->
+    <div class="contenido-y-emoji">
+
+      <!-- IZQUIERDA -->
+      <div class="hero-content-left">
+        <h1 class="titulo-principal">¡Deja que tu voz suene al mundo!</h1>
+        <p class="subtexto">
+          "Registra tu canción y deja que el mundo escuche tu ritmo. Comparte tu arte, tu estilo y tu voz con quienes buscan música con alma. Este es el primer paso para sonar donde siempre soñaste"
+        </p>
+
+        <!-- CÍRCULO ANIMADO -->
+        <div class="splash-overlay" *ngIf="showSplash" [ngStyle]="splashStyles"></div>
+      </div>
+
+      <!-- DERECHA: EMOJI CIRCULAR -->
+      <div class="emoji-container-right">
+        <span class="emoji-decorativo">🎵</span>
+      </div>
+    </div>
+
+</div>
+
+  <mat-toolbar class="canciones">
+    <!-- IZQUIERDA: Info y espacio para más cosas -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">Tu Biblioteca Musical, a un Clic de Transformarse</h2>
+      <p class="canciones-subtitulo">
+        Aquí puedes visualizar todas tus canciones registradas y realizar cambios cuando lo necesites.
+      </p>
+      <p class="canciones-subtitulo2">
+        ¡Dale vida a tu arte, edita tus creaciones y mantén tu música siempre afinada!
+      </p>
+      <div class="grupo-botones">
+        <!-- BOTÓN "Canción" -->
+        <button (click)="triggerSplash($event)" mat-raised-button class="comenzar">
+          Nueva Canción
+        </button>
+
+        <!-- BOTÓN "Cerrar" -->
+        <button routerLink="/login" class="action-button cerrar">
+          <span class="login-text">Cerrar Sesión</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- DERECHA: Tarjetas con scroll -->
+    <div class="tarjetas-canciones-scroll" *ngIf="canciones.length > 0; else noHay">
+      <mat-card *ngFor="let cancion of canciones" class="tarjeta-cancion">
+
+        <!-- Contenedor principal -->
+        <div class="contenido-tarjeta">
+          <!-- Ícono -->
+          <div class="plan-icon">
+            <div class="plan-emo">🎶</div>
+          </div>
+
+          <!-- Contenido textual -->
+          <div class="contenido-info">
+            <mat-card-title>{{ cancion.titulo }}</mat-card-title>
+            <mat-card-content>
+              <p><strong>Duración:</strong> {{ cancion.duracion }} min</p>
+            </mat-card-content>
+
+            <!-- Botón Editar -->
+              <button [routerLink]="['/Cnuevo-edit', cancion.idC]" class="action-button login">
+                <span class="login-text">Editar</span>
+              </button>
+          </div>
+        </div>
+
+      </mat-card>
+    </div>
+
+    <!-- Si no hay canciones -->
+    <ng-template #noHay>
+      <p class="mensaje-vacio">No se encontraron canciones registradas</p>
+    </ng-template>
+  </mat-toolbar>
+
+
+  <!-- Sección de suscripciones -->
+  <h2 class="titulo-suscripcion">Escoge tu suscripción</h2>
+  <p class="subtitulo-suscripcion">
+    Todos los planes incluyen un periodo de prueba gratuito de 14 días. Sin compromiso. Cancela en cualquier momento.
+  </p>
+
+  <div class="planes-container-horizontal">
+    <!-- Plan Gratis -->
+    <div class="plan-horizontal">
+      <div class="plan-icon-box">
+        <div class="plan-emoji">🎵</div>
+      </div>
+
+      <div class="plan-info">
+        <h3 class="plan-titulo">Nuestro plan para principiantes</h3>
+        <p class="plan-subtitulo">$3.00 al mes</p>
+
+        <ul class="plan-lista">
+          <li class="plan-item">Accede a más de 2 millones de pistas sin pagar nada.</li>
+          <li class="plan-item">Disfruta de música sin anuncios, estés donde estés.</li>
+          <li class="plan-item">Recibe mezclas y recomendaciones cada semana.</li>
+        </ul>
+
+        <button routerLink="/registro" class="action-button login plan-boton">
+          <span class="login-text">Probar gratis</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Plan Premium -->
+    <div class="plan-horizontal">
+      <div class="plan-icon-box">
+        <div class="plan-emoji">🎶</div>
+      </div>
+
+      <div class="plan-info">
+        <h3 class="plan-titulo">Nuestro plan más deseado</h3>
+        <p class="plan-subtitulo">$12.99 al mes</p>
+
+        <ul class="plan-lista">
+          <li class="plan-item">Accede a todo el catálogo de bandas, sin límites ni restricciones</li>
+          <li class="plan-item">Contratos personalizados con soporte 24/7 en tiempo real</li>
+          <li class="plan-item">Prioridad en reservas y eventos destacados</li>
+        </ul>
+
+        <button routerLink="/registro-premium" class="action-button login plan-boton">
+          <span class="login-text">Ir Premium</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<!-- FOOTER -->
+  <mat-toolbar class="footer">
+    <!-- Sección izquierda: Logo y texto -->
+    <span class="footer-logo">
+      <span class="arrow-icon">▶</span>
+      LiveBeat
+    </span>
+
+    <div class="footer-center">
+      <a class="social-link" aria-label="Facebook">
+        <span class="social-text">🔵</span>
+      </a>
+      <a class="social-link" aria-label="Instagram">
+        <span class="social-text">🟣</span>
+      </a>
+      <a class="social-link" aria-label="YouTube">
+        <span class="social-text">🔴</span>
+      </a>
+      <a class="social-link" aria-label="Twitter">
+        <span class="social-text">⚫</span>
+      </a>
+    </div>
+
+    <!-- Sección derecha: Información legal -->
+    <div class="footer-right">
+      <p class="copyright">
+        © LiveBeat 2025. MADE IN PERU
+      </p>
+      <nav class="legal-links">
+        <a href="#" class="legal-link">Legal</a>
+        <a href="#" class="legal-link">Prensa</a>
+        <a href="#" class="legal-link">Términos</a>
+        <a href="#" class="legal-link">Privacidad</a>
+        <a href="#" class="legal-link">Cookies</a>
+      </nav>
+    </div>
+    </mat-toolbar>
+  </div>

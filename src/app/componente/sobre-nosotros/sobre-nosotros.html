@@ -1,0 +1,87 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+  <span class="emoji-logo">🎵</span> LiveBeat
+</span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/'">Inicio</a>
+  <a [routerLink]="'/sobre-nosotros'">Sobre Nosotros</a>
+  <a [routerLink]="'/ayuda'">Ayuda</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/login" class="action-button login">
+    <span class="login-text">Iniciar Sesión</span>
+  </button>
+
+  <button routerLink="/registrar" class="action-button register">
+    <span class="register-text">Registrarse</span>
+  </button>
+</mat-toolbar>
+
+<div class="main-content">
+  <section class="sobre-nosotros-section">
+    <h1 class="titulo-sobre-nosotros">¿Quiénes somos?</h1>
+
+    <p class="parrafo-sobre-nosotros">
+      Somos un grupo de estudiantes de la UPC, apasionados por la <span class="resaltado">tecnología</span> y la <span class="resaltado">música</span>.
+      Nuestro objetivo fue crear una plataforma que conecte artistas y organizadores de eventos de forma <strong>rápida</strong>,
+      <strong>sencilla</strong> y <strong>segura</strong>.
+    </p>
+
+    <p class="parrafo-sobre-nosotros">
+      Diseñamos <span class="livebeat-resaltado">LiveBeat</span> pensando en la <strong>facilidad de uso</strong> y la
+      <strong>interacción intuitiva</strong>. Este proyecto es el resultado de nuestro esfuerzo, colaboración y creatividad,
+      combinando nuestras habilidades en <span class="resaltado">diseño</span> y <span class="resaltado">programación</span> para ofrecer una experiencia única.
+    </p>
+
+    <p class="parrafo-sobre-nosotros">
+      Creemos en el poder de la música para unir personas, y estamos aquí para hacerlo más <strong>fácil</strong>,
+      <strong>accesible</strong> y <strong>épico</strong> para todos los que aman el sonido en vivo <span class="emoji">🤘</span>.
+    </p>
+
+    <p class="frase-final">
+      ¡Vive la música con <span class="livebeat-resaltado">LiveBeat</span>! 🎶
+    </p>
+  </section>
+</div>
+
+<mat-toolbar class="footer">
+  <!-- Footer  -->
+  <span class="footer-logo">
+    <span class="arrow-icon">▶</span>
+    LiveBeat
+  </span>
+
+  <div class="footer-center">
+    <a class="social-link" aria-label="Facebook">
+      <span class="social-text">🔵</span>
+    </a>
+    <a class="social-link" aria-label="Instagram">
+      <span class="social-text">🟣</span>
+    </a>
+    <a class="social-link" aria-label="YouTube">
+      <span class="social-text">🔴</span>
+    </a>
+    <a class="social-link" aria-label="Twitter">
+      <span class="social-text">⚫</span>
+    </a>
+  </div>
+
+  <div class="footer-right">
+    <p class="copyright">
+      © LiveBeat 2025. MADE IN PERU
+    </p>
+    <nav class="legal-links">
+      <a href="#" class="legal-link">Legal</a>
+      <a href="#" class="legal-link">Prensa</a>
+      <a href="#" class="legal-link">Términos</a>
+      <a href="#" class="legal-link">Privacidad</a>
+      <a href="#" class="legal-link">Cookies</a>
+    </nav>
+  </div>
+</mat-toolbar>

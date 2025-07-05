@@ -1,0 +1,50 @@
+<div class="contenedor-formulario">
+<mat-card class="artista-card">
+  <h2 class="artista-titulo">
+    Formulario de Artista <span class="emoji-ayuda">🎤</span>
+  </h2>
+
+  <div class="form-wrapper-degradado">
+    <form [formGroup]="artistaForm" class="form-artist-content" (ngSubmit)="onSubmit()">
+      <div class="campo-form">
+        <label>Nombre Artístico:</label>
+        <input matInput formControlName="nombreArtista" placeholder="Ingrese su nombre artístico" />
+      </div>
+
+      <div class="campo-form">
+        <label>Género:</label>
+        <input matInput formControlName="genero" placeholder="Ingrese su género musical" />
+      </div>
+
+      <div class="campo-form">
+        <label>Biografía:</label>
+        <input matInput formControlName="biografia" placeholder="Ingrese su biografía" />
+      </div>
+
+      <div class="campo-form">
+        <label>Disponible:</label>
+        <input matInput formControlName="disponible" placeholder="True / False" />
+      </div>
+
+      <div class="campo-form">
+        <label>Canciones:</label>
+        <input matInput formControlName="canciones" placeholder="Ingrese sus canciones" />
+      </div>
+
+      <div class="botones-form">
+        <button routerLink="/artista-inicio" class="action-button login">
+          <span class="login-text">Cancelar</span>
+        </button>
+
+        <button type="button" class="action-button register" (click)="onSubmit()">
+          <span class="register-text">Registrar</span>
+        </button>
+      </div>
+    </form>
+    <!-- Mensaje visual de error -->
+    <div *ngIf="errorRegistro" class="mensaje-error-form">
+      {{ errorRegistro }}
+    </div>
+  </div>
+</mat-card>
+</div>

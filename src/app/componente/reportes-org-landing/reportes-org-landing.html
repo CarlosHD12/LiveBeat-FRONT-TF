@@ -1,0 +1,293 @@
+<mat-toolbar color="primary" class="toolbar">
+  <!-- LOGO -->
+  <span class="logo">
+  <span class="emoji-logo">🎵</span> LiveBeat
+</span>
+
+  <span class="spacer"></span>
+
+  <!-- LINKS DE NAVEGACIÓN -->
+  <a [routerLink]="'/organizador-inicio'">Inicio</a>
+  <a [routerLink]="'/contrato'">Contrato</a>
+  <a [routerLink]="'/reportesART-inicio'">Reportes</a>
+
+  <span class="spacer"></span>
+
+  <!-- BOTONES DE ACCIÓN -->
+  <button routerLink="/organizador" class="action-button login">
+    <span class="login-text">+ Organizador</span>
+  </button>
+</mat-toolbar>
+
+<div class="landing-container">
+
+  <mat-card class="hu07-tarjeta">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="hu07-formulario">
+
+        <!-- Selector -->
+          <mat-card-title class="hu07-titulo">🎶Listado de Artistas por Género</mat-card-title>
+          <p class="hu07-texto">Selecciona un género musical</p>
+          <mat-form-field appearance="outline" class="hu07-campo-select">
+            <mat-label>Género Musical</mat-label>
+            <mat-select formControlName="genero" required>
+              @for (g of listaDeGeneros; track g) {
+                <mat-option [value]="g">{{ g }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+
+        <!-- Botón centrado -->
+        <div class="hu07-boton-contenedor">
+          <button mat-raised-button type="submit" class="action-button hu07b">
+            <span class="hu07b-text">Buscar Artista</span>
+          </button>
+        </div>
+
+        <!-- Galería horizontal de artistas -->
+        <div class="galeria-artistas-container">
+
+          <div style="display: flex; justify-content: center;">
+            <h2 class="hu07-titulo-tabla">🎙️Artistas Disponibles</h2>
+          </div>
+
+          <div class="galeria-artistas" #galeria>
+            <mat-card *ngFor="let artista of dataSource.data; let i = index"
+                      [ngClass]="{'tarjeta-artista': true, 'artista-seleccionado': i === artistaSeleccionado}"
+                      (click)="seleccionarArtista(i)">
+              <mat-card-title>{{ artista.nombreArtista }}</mat-card-title>
+              <mat-card-content>
+                <p>Género: {{ artista.genero }}</p>
+                <p>Disponible: {{ artista.disponible ? 'Sí' : 'No' }}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- FLECHAS ABAJO -->
+          <div class="contenedor-flechas">
+            <button type="button" (click)="moverArtista('izquierda')"><</button>
+            <button type="button" (click)="moverArtista('derecha')">></button>
+          </div>
+        </div>
+
+        <ng-template #noData></ng-template>
+      </form>
+  </mat-card>
+
+  <mat-toolbar class="hu09">
+    <!-- IZQUIERDA -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">🏆️Top Artistas Recomendados</h2>
+      <p class="canciones-subtitulo">
+        Estos artistas no solo tienen talento, también tienen el respaldo del público.<br>
+        ¡Mira quiénes se están llevando todos los aplausos y recomendaciones!
+      </p>
+      <p class="canciones-subtitulo2">
+        La comunidad ya votó. Estas son las voces que no te puedes perder
+      </p>
+
+
+      <button (click)="triggerSplash($event)" mat-raised-button color="accent" class="hu09b">
+        <span class="mat-icon">⭐</span>
+        Ver Ranking
+      </button>
+      <!-- Círculo splash -->
+      <div *ngIf="showSplash" [ngStyle]="splashStyles" class="splash-circle"></div>
+
+    </div>
+
+  </mat-toolbar>
+
+  <div class="hu10-container">
+    <!-- Zona Izquierda: Filtro -->
+    <div class="hu10-filtro">
+      <h2 class="hu10-titulo">🎉Filtrar Eventos por Fecha</h2>
+      <p class="hu10-subtitulo">Selecciona una fecha para ver los eventos programados ese día</p>
+
+      <form [formGroup]="form2" (ngSubmit)="onSubmit2()" class="hu10-formulario">
+        <!-- Selector de fecha -->
+        <mat-form-field appearance="outline" class="hu10-datepicker">
+          <mat-label>Fecha del Evento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="fecha" required />
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Botón buscar -->
+        <button mat-raised-button type="submit" class="action-button login">
+          <span class="login-text">Buscar Eventos</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Zona Derecha: Resultados -->
+    <div class="hu10-resultados">
+      <ng-container *ngIf="dataSource10.data.length > 0; else noData">
+        <div class="hu10-listado">
+          <mat-card *ngFor="let evento of dataSource10.data" class="hu10-card">
+            <mat-card-title class="hu10-card-title">{{ evento.nombreEvento }}</mat-card-title>
+            <mat-card-content>
+              <p>Fecha: {{ evento.fecha | date }}</p>
+              <p>Tipo: {{ evento.tipoEvento }}</p>
+              <p>Descripción: {{ evento.descripcion }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </ng-container>
+        <div class="xD" *ngIf="dataSource10.data.length === 0">
+          <p class="mensaje-vacio">No hay eventos disponibles para esta fecha.</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="hu11-container">
+
+    <!-- Contenedor Izquierdo -->
+    <div class="hu11-filtro">
+      <h1 class="hu11-titulo">Descubre los contratos pendientes que esperan tu aprobación</h1>
+      <p class="hu11-subtitulo">Estos contratos están esperando tu visto bueno, ¡dale una chequeada!</p>
+
+      <form [formGroup]="form11" (ngSubmit)="onSubmit11()" class="hu11-form">
+        <mat-form-field appearance="outline" class="hu11-select">
+          <mat-label>Organizador</mat-label>
+          <mat-select formControlName="organizador" required>
+            @for (org of listaOrganizadores; track org.idO) {
+              <mat-option [value]="org.idO">{{ org.nombreOrganizador }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" class="action-button register">
+          <span class="register-text">Buscar Contratos Pendientes</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Contenedor Derecho -->
+    <div class="hu11-listado">
+      <ng-container *ngIf="dataSource11.data.length > 0; else noData">
+        <div class="hu11-scroll">
+          <mat-card *ngFor="let contrato of dataSource11.data" class="hu11-card">
+            <mat-card-title class="hu11-card-title">Contrato #{{ contrato.idCo }}</mat-card-title>
+            <mat-card-content>
+              <p>Fecha: {{ contrato.fechaContrato | date }}</p>
+              <p>Monto: S/. {{ contrato.montoTotal | number:'1.2-2' }}</p>
+              <p>Estado: Pendiente</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </ng-container>
+
+      <div class="xD" *ngIf="dataSource11.data.length === 0">
+        <p class="mensaje-vacio">No se encontraron contratos pendientes para este organizador.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hu14-container">
+    <div class="hu14-content">
+
+      <!-- TÍTULO Y SUBTÍTULO -->
+      <h2 class="hu14-titulo">💰 Monto Total de Pagos Realizados</h2>
+      <p class="hu14-subtitulo">
+        Selecciona un contrato y descubre cuánto se ha pagado.<br>
+        ¡Que no se te escape ni un sol!
+      </p>
+
+      <!-- TARJETA CON FORMULARIO -->
+      <mat-card class="hu14-card-borde">
+        <mat-card-content>
+
+          <form [formGroup]="form14" (ngSubmit)="onSubmit14()" class="hu14-formulario">
+
+            <!-- TEXTO INDICATIVO -->
+            <p class="hu14-indicacion">Selecciona un contrato para ver cuánto se ha pagado</p>
+
+            <!-- SELECTOR -->
+            <mat-form-field appearance="outline" class="hu14-select">
+              <mat-label>Contrato</mat-label>
+              <mat-select formControlName="contrato" required>
+                @for (pago of listaContratos; track pago.idCo) {
+                  <mat-option [value]="pago.idCo">
+                    {{ pago.idCo }}
+                  </mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
+            <!-- BOTÓN -->
+            <button mat-raised-button type="submit" class="action-button hu14b">
+              <span class="hu14b-text">Buscar Monto Total</span>
+            </button>
+            <!-- RESULTADO -->
+            <mat-card class="hu14-card-resultado" *ngIf="dataSource14.data.length > 0; else noData">
+              <mat-card-title class="hu14-titulo-resultado">Resumen de Pagos</mat-card-title>
+              <mat-card-content>
+                <p class="hu14-texto-degradado">
+                  Total pagado por el contrato #{{ dataSource14.data[0]?.idCo }}:
+                  <span class="hu14-monto">
+                    S/. {{ dataSource14.data[0]?.total }}
+                  </span>
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <!-- SIN RESULTADO -->
+            <ng-template #noData>
+              <div class="hu14-card-resultado">
+                <mat-card-content>
+                  <p class="hu14-texto-degradado">No se encontraron pagos realizados para este contrato.</p>
+                </mat-card-content>
+              </div>
+            </ng-template>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+</div>
+
+<!-- FOOTER -->
+<mat-toolbar class="footer">
+    <!-- Sección izquierda: Logo y texto -->
+    <span class="footer-logo">
+      <span class="arrow-icon">▶</span>
+      LiveBeat
+    </span>
+
+    <div class="footer-center">
+      <a class="social-link" aria-label="Facebook">
+        <span class="social-text">🔵</span>
+      </a>
+      <a class="social-link" aria-label="Instagram">
+        <span class="social-text">🟣</span>
+      </a>
+      <a class="social-link" aria-label="YouTube">
+        <span class="social-text">🔴</span>
+      </a>
+      <a class="social-link" aria-label="Twitter">
+        <span class="social-text">⚫</span>
+      </a>
+    </div>
+
+    <!-- Sección derecha: Información legal -->
+    <div class="footer-right">
+      <p class="copyright">
+        © LiveBeat 2025. MADE IN PERU
+      </p>
+      <nav class="legal-links">
+        <a href="#" class="legal-link">Legal</a>
+        <a href="#" class="legal-link">Prensa</a>
+        <a href="#" class="legal-link">Términos</a>
+        <a href="#" class="legal-link">Privacidad</a>
+        <a href="#" class="legal-link">Cookies</a>
+      </nav>
+    </div>
+  </mat-toolbar>
+

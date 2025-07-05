@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+}
+
+/* Scrollbar vertical global con degradado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+mat-label,
+mat-select {
+  font-family: 'Pixelify Sans', sans-serif;
+  color: gray !important;
+}
+
+
+::ng-deep .mat-datepicker-content {
+  background-color: #2a2a2a !important;
+  font-family: 'Pixelify Sans', sans-serif;
+  border-radius: 12px;
+}
+
+::ng-deep .mat-calendar-body-cell-content {
+  color: white !important;
+  font-family: 'Pixelify Sans', sans-serif;
+  border-radius: 8px;
+}
+
+::ng-deep .mat-calendar-body-selected {
+  background-color: #FF7200 !important;
+  color: black !important;
+}
+
+::ng-deep .mat-calendar-body-cell:hover .mat-calendar-body-cell-content {
+  background-color: #FFB100 !important;
+  color: black !important;
+}
+
+::ng-deep .mat-calendar-period-button,
+::ng-deep .mat-calendar-previous-button,
+::ng-deep .mat-calendar-next-button {
+  color: white   !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF7200, #FFB100);
+  border-radius: 10px;
+}
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

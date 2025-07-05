@@ -1,0 +1,63 @@
+<div class="contenedor-formulario">
+  <mat-card class="artista-card">
+    <h2 class="artista-titulo">
+      Formulario de Evento <span class="emoji-ayuda">🎉</span>
+    </h2>
+
+    <div class="form-wrapper-degradado">
+      <form [formGroup]="eventoForm" class="form-artist-content">
+
+        <div class="campo-formF">
+          <label>Fecha del Evento:</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione la Fecha del Evento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha"/>
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="campo-form">
+          <label>Nombre Evento:</label>
+          <input matInput formControlName="nombreEvento" placeholder="Ingrese el nombre del Evento" />
+        </div>
+
+        <div class="campo-form">
+          <label>Tipo de Evento:</label>
+          <input matInput formControlName="tipoEvento" placeholder="Ingrese el tipo de Evento" />
+        </div>
+
+        <div class="campo-form">
+          <label>Descripción:</label>
+          <input matInput formControlName="descripcion" placeholder="Ingrese la descripción del Evento" />
+        </div>
+
+        <div class="campo-form">
+          <label>Organizador:</label>
+          <mat-form-field appearance="outline" class="custom-select">
+            <mat-label>Seleccione un organizador</mat-label>
+            <mat-select formControlName="organizador" [(value)]="idOrganizadorSeleccionado" required>
+              @for (a of lista; track a.idO) {
+                <mat-option [value]="a.idO">
+                  {{ a.nombreOrganizador }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="botones-form">
+          <button routerLink="/evento-inicio" class="action-button login">
+            <span class="login-text">Cancelar</span>
+          </button>
+
+          <button type="button" class="action-button register" (click)="onSubmit()">
+            <span class="register-text">Registrar</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

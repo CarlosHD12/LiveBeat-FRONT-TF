@@ -1,0 +1,70 @@
+<mat-card>
+  <mat-card-title>Filtrar Contratos por Rango de Fechas</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+
+      <!-- Campo: Fecha Inicio -->
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" required/>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Campo: Fecha Fin -->
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Fin</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" required/>
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <!-- Botón: Buscar Contratos -->
+      <button mat-raised-button color="primary" type="submit">Buscar Contratos</button>
+
+      <!-- Tabla: Mostrar resultados -->
+      <div *ngIf="dataSource.data.length > 0; else noData">
+        <h3>Contratos entre {{ form.get('startDate')?.value }} y {{ form.get('endDate')?.value }}</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+
+          <!-- ID del contrato -->
+          <ng-container matColumnDef="idCo">
+            <th mat-header-cell *matHeaderCellDef>ID Contrato</th>
+            <td mat-cell *matCellDef="let contrato">{{ contrato.idCo }}</td>
+          </ng-container>
+
+          <!-- Nombre del evento -->
+          <ng-container matColumnDef="nombreEvento">
+            <th mat-header-cell *matHeaderCellDef>Nombre del Evento</th>
+            <td mat-cell *matCellDef="let contrato">{{ contrato.nombreEvento }}</td>
+          </ng-container>
+
+          <!-- Fecha del contrato -->
+          <ng-container matColumnDef="fechaContrato">
+            <th mat-header-cell *matHeaderCellDef>Fecha del Contrato</th>
+            <td mat-cell *matCellDef="let contrato">{{ contrato.fechaContrato | date }}</td>
+          </ng-container>
+
+          <!-- Monto total -->
+          <ng-container matColumnDef="montoTotal">
+            <th mat-header-cell *matHeaderCellDef>Monto Total</th>
+            <td mat-cell *matCellDef="let contrato">S/. {{ contrato.montoTotal | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <!-- Cabecera y filas -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <!-- Mensaje si no hay datos -->
+      <ng-template #noData>
+        <p>No se encontraron contratos para este rango de fechas.</p>
+      </ng-template>
+
+    </form>
+  </mat-card-content>
+</mat-card>

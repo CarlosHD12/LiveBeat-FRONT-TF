@@ -1,0 +1,54 @@
+<mat-card class="example-card">
+  <mat-card-title>Buscar Eventos por Artista</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="calificacionForm" (ngSubmit)="buscarEventos()" class="form-container">
+
+      <!-- Campo para elegir artista -->
+      <mat-form-field appearance="fill">
+        <mat-label>Artista</mat-label>
+        <mat-select formControlName="artista" required>
+          @for (org of listaA; track org.idA) {
+            <mat-option [value]="org.idA">
+              {{ org.nombreArtista }}
+            </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Botón para buscar -->
+      <button mat-raised-button color="primary" type="submit">Buscar</button>
+
+      <!-- Tabla para mostrar resultados -->
+      <div *ngIf="eventos.length > 0; else noData">
+        <h3>Eventos donde el artista está contratado</h3>
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <!-- Nombre del Evento -->
+          <ng-container matColumnDef="nombreEvento">
+            <th mat-header-cell *matHeaderCellDef>Nombre del Evento</th>
+            <td mat-cell *matCellDef="let evento">{{ evento.nombreEvento }}</td>
+          </ng-container>
+
+          <!-- Fecha del Contrato -->
+          <ng-container matColumnDef="fechaContrato">
+            <th mat-header-cell *matHeaderCellDef>Fecha del Contrato</th>
+            <td mat-cell *matCellDef="let evento">{{ evento.fechaContrato | date }}</td>
+          </ng-container>
+
+          <!-- Monto Total -->
+          <ng-container matColumnDef="montoTotal">
+            <th mat-header-cell *matHeaderCellDef>Monto Total</th>
+            <td mat-cell *matCellDef="let evento">S/. {{ evento.montoTotal | number:'1.2-2' }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <ng-template #noData>
+        <p>No se encontraron eventos para este artista.</p>
+      </ng-template>
+
+    </form>
+  </mat-card-content>
+</mat-card>
