@@ -5,16 +5,11 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {MatButton, MatButtonModule} from '@angular/material/button';
 import {MatCard, MatCardContent, MatCardModule, MatCardTitle} from '@angular/material/card';
 import {CommonModule, DatePipe, NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
-import {MatHint, MatSelect, MatSuffix} from '@angular/material/select';
+import {MatSelect, MatSuffix} from '@angular/material/select';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {HU07Service} from '../../services/hu07-service';
 import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
   MatTableDataSource, MatTableModule
 } from '@angular/material/table';
 import {HU07} from '../../model/hu07';
@@ -78,7 +73,6 @@ export class ReportesORGLanding {
   hu14Service = inject(HU14Service);
   contratoervice = inject(ContratoService);
 
-  displayedColumns14: string[] = ['idCo', 'total'];
   dataSource14 = new MatTableDataSource<HU14>();
   form14!: FormGroup;
   listaContratos: any[] = [];
@@ -87,12 +81,10 @@ export class ReportesORGLanding {
   hu07Service = inject(HU07Service);
   organizadorService = inject(OrganizadorService);
   hu11Service = inject(HU11Service);
-  displayedColumns11: string[] = ['idCo', 'fechaContrato', 'montoTotal', 'estado'];
   dataSource11 = new MatTableDataSource<HU11>();
   form11: FormGroup;
   listaOrganizadores: any[] = [];
   fb = inject(FormBuilder);
-  displayedColumns10: string[] = ['nombreEvento', 'fecha', 'tipoEvento', 'descripcion'];
   dataSource10 = new MatTableDataSource<HU10>();
   displayedColumns: string[] = ['nombreArtista', 'genero', 'disponible'];
   dataSource = new MatTableDataSource<HU07>();
@@ -244,29 +236,34 @@ export class ReportesORGLanding {
     }
   }
 
+  showSplash2 = false;
+  splashStyles2: { [key: string]: string } = {};
 
-  showSplash = false;
-  splashStyles: { [key: string]: string } = {};
-
-  triggerSplash(event: MouseEvent) {
-    const button = event.currentTarget as HTMLElement;
-    const rect = button.getBoundingClientRect();
-
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-
-    this.splashStyles = {
-      top: `${y}px`,
-      left: `${x}px`,
-      width: `80px`,
-      height: `80px`,
-      transform: 'scale(0)',
+  triggerSplashToRuta(ruta: string) {
+    this.splashStyles2 = {
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      position: 'fixed',
+      backgroundColor: '#FF7200',
+      zIndex: '9999',
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.6s ease-in-out',
     };
 
-    this.showSplash = true;
+    this.showSplash2 = true;
 
     setTimeout(() => {
-      this.router.navigate(['/hu09']);
-    }, 650); // Tiempo de la animación
+      this.splashStyles2 = {
+        ...this.splashStyles2,
+        transform: 'scaleX(1)',
+      };
+    });
+
+    setTimeout(() => {
+      this.router.navigate([ruta]);
+    }, 600);
   }
 }

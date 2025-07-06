@@ -5,8 +5,7 @@ import {PagoService} from '../../services/pago-service';
 import {ContratoService} from '../../services/contrato-service';
 import {Contrato} from '../../model/contrato';
 import {Pago} from '../../model/pago';
-import {MatButton} from '@angular/material/button';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MatCard} from '@angular/material/card';
 import {MatFormField, MatHint, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {
   MatDatepicker,
@@ -15,6 +14,7 @@ import {
 } from '@angular/material/datepicker';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-pago',
@@ -34,10 +34,8 @@ import {MatSelect} from '@angular/material/select';
     MatDatepickerModule,
     MatSelect,
     MatOption,
-    MatButton,
-    MatCardContent,
-    MatCardTitle,
     RouterLink,
+    NgIf,
   ],
   templateUrl: './pago.html',
   styleUrl: './pago.css'
@@ -84,7 +82,11 @@ export class PagoComponent {
     })
   }
 
+  public mostrarError = false;
+
   onSubmit() {
+    this.mostrarError = false;
+
     if (this.pagoForm.valid) {
       const pago = new Pago();
 
@@ -94,7 +96,7 @@ export class PagoComponent {
       pago.estadoPago = this.pagoForm.value.estadoPago;
       pago.metodoPago = this.pagoForm.value.metodoPago;
 
-      const contratoId = this.pagoForm.value.contrato; // Este viene del select
+      const contratoId = this.pagoForm.value.contrato;
       pago.contrato = new Contrato();
       pago.contrato.idCo = contratoId;
 
@@ -102,9 +104,9 @@ export class PagoComponent {
 
       this.pagoService.insert(pago).subscribe({
         next: data => {
-          alert("Pago registrado!");
+          alert("¡Pago registrado con éxito!");
           this.pagoService.actualizarLista();
-          this.router.navigate(['']);
+          this.router.navigate(['/organizador-inicio']);
         },
         error: err => {
           console.error("Error al registrar Pago", err);
@@ -112,8 +114,9 @@ export class PagoComponent {
         }
       });
     } else {
-      alert("Formulario no válido!");
-      console.log("Formulario no válido!");
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
+
 }

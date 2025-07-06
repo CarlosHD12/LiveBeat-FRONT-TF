@@ -1,39 +1,30 @@
-<mat-card>
-  <mat-card-title>Cantidad de Contratos por Artista</mat-card-title>
-  <mat-card-content>
+<div class="hu15-container">
+  <h1 class="hu15-titulo">🎤 Contratos por Artista</h1>
+  <p class="hu15-subtitulo">Explora cuántos contratos tiene cada artista. ¡El top del top!</p>
 
-    <!-- Botón para recargar datos -->
-    <button mat-raised-button color="primary" (click)="cargarDatos()">
-      Cargar Datos
-    </button>
+  <mat-card class="hu15-card">
+    <mat-card-content>
+      <!-- Botón para recargar datos -->
+      <div class="hu15-boton-container">
+        <button mat-raised-button class="action-button register" (click)="cargarDatos()">
+          <span class="register-text">Cargar Datos</span>
+        </button>
+      </div>
 
-    <!-- Tabla para mostrar resultados -->
-    <div *ngIf="dataSource.data.length > 0; else noData">
-      <h3>Listado de artistas y sus contratos</h3>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!-- Nombre del Artista -->
-        <ng-container matColumnDef="nombreArtista">
-          <th mat-header-cell *matHeaderCellDef>Nombre del Artista</th>
-          <td mat-cell *matCellDef="let item">{{ item.nombreArtista }}</td>
-        </ng-container>
+      <div *ngIf="dataSource.data.length > 0; else noData" class="hu15-tarjetas-container">
+        <mat-card *ngFor="let artista of dataSource.data" class="hu15-tarjeta-artista">
+          <mat-card-title class="hu15-titulo-tarjeta">{{ artista.nombreArtista }}</mat-card-title>
+          <mat-card-content>
+            <p class="hu15-contenido-tarjeta">Contratos: {{ artista.cantidadContratos }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-        <!-- Cantidad de Contratos -->
-        <ng-container matColumnDef="cantidadContratos">
-          <th mat-header-cell *matHeaderCellDef>Cantidad de Contratos</th>
-          <td mat-cell *matCellDef="let item">{{ item.cantidadContratos }}</td>
-        </ng-container>
-
-        <!-- Cabecera y filas -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-
-    <!-- Mensaje si no hay datos -->
-    <ng-template #noData>
-      <p>No se encontraron artistas con contratos.</p>
-    </ng-template>
-
-  </mat-card-content>
-</mat-card>
+      <!-- Si no hay datos -->
+      <ng-template #noData>
+        <p class="hu15-mensaje-vacio">No se encontraron artistas con contratos.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

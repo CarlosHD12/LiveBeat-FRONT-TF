@@ -8,19 +8,161 @@
 
   <!-- LINKS DE NAVEGACIÓN -->
   <a [routerLink]="'/organizador-inicio'">Inicio</a>
-  <a [routerLink]="'/ac'">Contrato</a>
+  <a [routerLink]="'/contrato'">Contrato</a>
   <a [routerLink]="'/reportesORG-inicio'">Reportes</a>
 
   <span class="spacer"></span>
 
   <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/organizador" class="action-button login">
+  <button (click)="triggerSplashToRuta('/organizador')" class="action-button login">
     <span class="login-text">+ Organizador</span>
   </button>
 </mat-toolbar>
 
 <div class="main-content">
-  <!-- Footer igualito como lo tienes -->
+
+  <div class="contenido-principal">
+
+    <!-- CONTENEDOR HORIZONTAL: IZQUIERDA CONTENIDO / DERECHA EMOTE -->
+    <div class="contenido-y-emoji">
+
+      <!-- IZQUIERDA -->
+      <div class="hero-content-left">
+        <h1 class="titulo-principal">El Escenario Empieza Contigo: ¡Crea, Coordina y Conquista la Noche!</h1>
+        <p class="subtexto">
+          "Desde los beats más urbanos hasta las baladas más profundas, tu evento es la chispa que enciende el show.
+          Haz que cada presentación cuente y que cada aplauso sea tuyo también!"
+        </p>
+
+        <!-- CÍRCULO ANIMADO -->
+        <div class="splash-overlay"></div>
+      </div>
+
+      <!-- DERECHA: EMOJI CIRCULAR -->
+      <div class="emoji-container-right">
+        <span class="emoji-decorativo">🎉</span>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-toolbar class="canciones">
+    <!-- IZQUIERDA: Info del organizador -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">Tu Agenda de Eventos, Siempre Bajo Control 🎉</h2>
+      <p class="canciones-subtitulo">
+        Aquí puedes visualizar todos los eventos que has organizado y modificarlos según las necesidades del show.
+      </p>
+      <p class="canciones-subtitulo2">
+        ¡Gestiona tu escena como un profesional, actualiza tus fechas y haz que cada evento brille!
+      </p>
+
+      <div class="grupo-botones">
+
+        <button (click)="triggerSplashToRuta('/evento')" mat-raised-button class="comenzar">
+          Nuevo Evento
+        </button>
+
+
+        <button (click)="triggerSplashToRuta('/login')" class="action-button cerrar">
+          <span class="login-text">Cerrar Sesión</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- DERECHA: Tarjetas con scroll -->
+    <div class="tarjetas-canciones-scroll" *ngIf="eventos.length > 0; else noEventos">
+      <mat-card *ngFor="let evento of eventos" class="tarjeta-cancion">
+        <!-- Contenedor principal -->
+        <div class="contenido-tarjeta">
+          <!-- Ícono -->
+          <div class="plan-icon">
+            <div class="plan-emo">⭐</div>
+          </div>
+
+          <!-- Contenido textual -->
+          <div class="contenido-info">
+            <mat-card-title>{{ evento.nombreEvento }}</mat-card-title>
+            <mat-card-content>
+              <p>Fecha: {{ evento.fecha | date:'dd/MM/yyyy' }}</p>
+              <p>Tipo: {{ evento.tipoEvento }}</p>
+              <p>Descripción:{{ evento.descripcion }}</p>
+            </mat-card-content>
+
+
+            <!-- Botón Editar -->
+            <button (click)="triggerSplashToRuta(`/Enuevo-edit/${evento.idE}`)" class="action-button login">
+              <span class="login-text">Editar</span>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Si no hay eventos -->
+    <ng-template #noEventos>
+      <p class="mensaje-vacio">No se encontraron eventos registrados</p>
+    </ng-template>
+  </mat-toolbar>
+
+  <!-- Sección de suscripciones -->
+  <h2 class="titulo-suscripcion">¿Qué deseas registrar hoy? Tu decisión mantiene el ritmo?</h2>
+  <p class="subtitulo-suscripcion">
+    Elige si registrar un pago o dejar tu calificación.
+  </p>
+  <p class="subtitulo-suscripcion">
+    ¡Tú decides cómo llevar el ritmo!
+  </p>
+
+  <div class="planes-container-horizontal">
+    <!-- Plan Gratis -->
+    <div class="plan-horizontal">
+      <div class="plan-icon-box">
+        <div class="plan-emoji">💲</div>
+      </div>
+
+      <div class="plan-info">
+        <h3 class="plan-titulo">Registra tu Pago</h3>
+        <p class="plan-subtitulo">Gestiona los pagos con precisión y mantén el ritmo sin interrupciones</p>
+
+        <ul class="plan-lista">
+          <p class="plan-item">
+            Registra los pagos realizados por tus clientes de manera rápida y segura. Lleva el control de
+            tus ingresos por cada evento y mantén tus cuentas al día sin complicaciones. 💰
+          </p>
+        </ul>
+
+        <button (click)="triggerSplashToRuta('/pago')" class="action-button login plan-boton">
+          <span class="login-text">Registrar Pago</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Plan Premium -->
+    <div class="plan-horizontal">
+      <div class="plan-icon-box">
+        <div class="plan-emoji">🎶</div>
+      </div>
+
+      <div class="plan-info">
+        <h3 class="plan-titulo">Califica la Experiencia</h3>
+        <p class="plan-subtitulo">Tu opinión es clave para seguir mejorando cada evento y presentación</p>
+
+        <ul class="plan-lista">
+          <p class="plan-item">
+            Valora la calidad del show, el profesionalismo del artista y cómo te hizo sentir esa noche mágica.
+            Registra tu calificación y contribuye a que la música en vivo siga subiendo de nivel. ✨.
+          </p>
+        </ul>
+
+
+        <button (click)="triggerSplashToRuta('/calificacion')" class="action-button login plan-boton">
+          <span class="login-text">Calificar Artista</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <mat-toolbar class="footer">
@@ -58,3 +200,4 @@
     </nav>
   </div>
 </mat-toolbar>
+<div class="splash-overlay-registro" *ngIf="showSplash2" [ngStyle]="splashStyles2"></div>

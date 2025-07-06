@@ -5,27 +5,25 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {CancionService} from '../../services/cancion-service';
 import {Artista} from '../../model/artista';
 import {Cancion} from '../../model/cancion';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MatCard} from '@angular/material/card';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
-import {MatButton} from '@angular/material/button';
 import {MatSelect} from '@angular/material/select';
 import {MatOption} from '@angular/material/core';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-cancion',
   imports: [
-    MatCardTitle,
     MatCard,
-    MatCardContent,
     ReactiveFormsModule,
     MatFormField,
     MatLabel,
     MatInput,
     MatFormField,
     MatSelect,
-    MatButton,
     MatOption,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './cancion.html',
   styleUrl: './cancion.css'
@@ -74,7 +72,11 @@ export class CancionComponent {
     })
   }
 
+  public mostrarError = false;
+
   onSubmit() {
+    this.mostrarError = false;
+
     if (this.cancionForm.valid) {
       const cancion = new Cancion();
       cancion.idC = this.id;
@@ -85,19 +87,23 @@ export class CancionComponent {
 
       if (this.edicion) {
         this.cancionService.update(cancion).subscribe(() => {
-          alert("Canción actualizada!");
+          alert("¡Canción actualizada!");
           this.cancionService.actualizarLista();
           this.router.navigate(['/artista-inicio']);
         });
       } else {
         this.cancionService.insert(cancion).subscribe(() => {
-          alert("Canción registrada!");
+          alert("¡Canción registrada!");
           this.cancionService.actualizarLista();
           this.router.navigate(['/artista-inicio']);
         });
       }
+    } else {
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
+
 
   loadForm() {
     this.cancionService.listId(this.id).subscribe(data => {

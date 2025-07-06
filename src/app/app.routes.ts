@@ -20,7 +20,6 @@ import {HU12Component} from './componente/hu12/hu12';
 import {HU13Component} from './componente/hu13/hu13';
 import {HU14Component} from './componente/hu14/hu14';
 import {HU15Component} from './componente/hu15/hu15';
-import {HU11Component} from './componente/hu11/hu11';
 import {ArtistaLanding} from './componente/artista-landing/artista-landing';
 import {ArtistaComponent} from './componente/artista/artista';
 import {RegisterComponent} from './componente/register-component/register-component';
@@ -40,7 +39,6 @@ export const routes: Routes = [
   {path: 'contrato', component: ContratoComponent},
   {path: 'hu09', component: HU09Component},
   {path: 'hu10', component: HU10Component},
-  {path: 'hu11', component: HU11Component},
   {path: 'hu12', component: HU12Component},
   {path: 'hu13', component: HU13Component},
   {path: 'hu14', component: HU14Component},
@@ -51,6 +49,7 @@ export const routes: Routes = [
   {path: 'calificacion', component: CalificacionComponent},
   {path: 'ac', component: AcComponent},
   {path: 'Cnuevo-edit/:id', component: CancionComponent },
+  {path: 'Enuevo-edit/:id', component: EventoComponent },
   {path: 'organizador', component: OrganizadorComponent},
   {path: 'Anuevo-edit/:id', component: ArtistaComponent},
   {path: 'Onuevo-edit/:id', component: OrganizadorComponent},

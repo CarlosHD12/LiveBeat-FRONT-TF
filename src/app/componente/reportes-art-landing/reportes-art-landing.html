@@ -14,7 +14,7 @@
   <span class="spacer"></span>
 
   <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/artista" class="action-button login">
+  <button (click)="triggerSplashToRuta('/artista')" class="action-button login">
     <span class="login-text">+ Artista</span>
   </button>
 </mat-toolbar>
@@ -101,9 +101,10 @@
         <p class="plan-subtitulo">Descubre cómo te perciben los organizadores, filtra críticas constructivas y celebra tus valoraciones más altas.</p>
 
 
-        <button routerLink="/hu24" class="action-button login plan-boton">
+        <button (click)="triggerSplashToRuta('/hu24')" class="action-button login plan-boton">
           <span class="login-text">Ver Calificaciones</span>
         </button>
+
       </div>
     </div>
   </div>
@@ -239,3 +240,5 @@
       </nav>
     </div>
   </mat-toolbar>
+<div class="splash-overlay-registro" *ngIf="showSplash2" [ngStyle]="splashStyles2"></div>
+

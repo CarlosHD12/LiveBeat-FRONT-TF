@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
-import {LandingPage} from './componente/landing-page/landing-page';
+import {RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +10,4 @@ import {LandingPage} from './componente/landing-page/landing-page';
 export class App {
   protected title = 'LiveBeatFRONT';
   rol: any;
-  esArtista(): boolean {
-    let es: boolean = false;
-    this.rol = localStorage.getItem("rol");
-    if(this.rol == 'ROLE_ARTISTA'){
-      es = true;
-    }
-    return es;
-  }
 }

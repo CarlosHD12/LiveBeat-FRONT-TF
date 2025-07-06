@@ -5,6 +5,7 @@ import {OrganizadorService} from '../../services/organizador-service';
 import {Organizador} from '../../model/organizador';
 import {MatCard} from '@angular/material/card';
 import {MatInput} from '@angular/material/input';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-organizador',
@@ -12,7 +13,8 @@ import {MatInput} from '@angular/material/input';
     MatCard,
     MatInput,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './organizador.html',
   styleUrl: './organizador.css' //poner la s en la URL?
@@ -56,14 +58,19 @@ export class OrganizadorComponent {
     }
   }
 
+  public mostrarError = false;
+
   onSubmit() {
-    console.log("Enviando Organizador")
-    if(this.organizadorForm.valid){
+    console.log("Enviando Organizador");
+    this.mostrarError = false;
+
+    if (this.organizadorForm.valid) {
       const organizador: Organizador = new Organizador();
       organizador.idO = this.id;
       organizador.nombreOrganizador = this.organizadorForm.value.nombreOrganizador;
       organizador.direccion = this.organizadorForm.value.direccion;
       organizador.organizacion = this.organizadorForm.value.organizacion;
+
       if (!this.edition) {
         console.log(organizador);
         this.organizadorService.insert(organizador).subscribe((data: Organizador) => {
@@ -78,6 +85,9 @@ export class OrganizadorComponent {
           this.router.navigate(['/organizadores']);
         });
       }
+    } else {
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
 }

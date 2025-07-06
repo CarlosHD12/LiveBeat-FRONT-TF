@@ -13,12 +13,12 @@
 
   <span class="spacer"></span>
 
-  <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/login" class="action-button login">
+  <!-- AHORA -->
+  <button (click)="triggerSplash($event)" class="action-button login">
     <span class="login-text">Iniciar Sesión</span>
   </button>
 
-  <button routerLink="/login" class="action-button register">
+  <button (click)="triggerSplash($event)" class="action-button register">
     <span class="register-text">Registrarse</span>
   </button>
 </mat-toolbar>

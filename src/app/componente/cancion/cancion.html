@@ -49,7 +49,9 @@
             </span>
           </button>
         </div>
-
+        <div *ngIf="mostrarError" class="mensaje-error-ac">
+          Por favor, completa todos los campos antes de continuar
+        </div>
       </form>
     </div>
   </mat-card>

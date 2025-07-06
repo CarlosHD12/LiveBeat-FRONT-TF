@@ -1,65 +1,47 @@
-<mat-card>
-  <mat-card-title>Listado de Pagos por Evento</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+<div class="hu13-container">
+  <h1 class="hu13-titulo">💲Listado de Pagos por Evento</h1>
+  <p class="hu13-subtitulo">Revisa cuánto se ha pagado por cada evento. Que no se te escape ni un céntimo</p>
 
-      <!-- Campo: Seleccionar Evento -->
-      <mat-form-field appearance="fill">
-        <mat-label>Selecciona un evento</mat-label>
-        <mat-select formControlName="evento" required>
-          @for (evento of listaEventos; track evento.idE) {
-            <mat-option [value]="evento.idE">
-              {{ evento.nombreEvento }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+  <mat-card class="hu13-card">
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="hu13-form">
 
-      <!-- Botón: Buscar Pagos -->
-      <button mat-raised-button color="primary" type="submit">Buscar Pagos</button>
+        <!-- Texto + Selector de Evento -->
+        <div class="hu13-selector-container">
+          <span class="hu13-texto-previo">Elige un evento:</span>
+          <mat-form-field appearance="outline" class="hu13-form-field">
+            <mat-label>Evento</mat-label>
+            <mat-select formControlName="evento" required>
+              @for (evento of listaEventos; track evento.idE) {
+                <mat-option [value]="evento.idE">
+                  {{ evento.nombreEvento }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <!-- Botón Buscar -->
+        <button mat-raised-button type="submit" class="action-button register">
+          <span class="register-text">Buscar Pagos</span>
+        </button>
+      </form>
 
-      <!-- Tabla: Mostrar resultados -->
-      <div *ngIf="dataSource.data.length > 0; else noData">
-        <h3>Pagos del evento</h3>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-          <!-- ID del Pago -->
-          <ng-container matColumnDef="idP">
-            <th mat-header-cell *matHeaderCellDef>ID Pago</th>
-            <td mat-cell *matCellDef="let pago">{{ pago.idP }}</td>
-          </ng-container>
-
-          <!-- Fecha del Pago -->
-          <ng-container matColumnDef="fechaPago">
-            <th mat-header-cell *matHeaderCellDef>Fecha del Pago</th>
-            <td mat-cell *matCellDef="let pago">{{ pago.fechaPago | date }}</td>
-          </ng-container>
-
-          <!-- Monto -->
-          <ng-container matColumnDef="monto">
-            <th mat-header-cell *matHeaderCellDef>Monto</th>
-            <td mat-cell *matCellDef="let pago">S/. {{ pago.monto | number:'1.2-2' }}</td>
-          </ng-container>
-
-          <!-- Estado del Pago -->
-          <ng-container matColumnDef="estadoPago">
-            <th mat-header-cell *matHeaderCellDef>Estado</th>
-            <td mat-cell *matCellDef="let pago">
-              {{ pago.estadoPago ? 'Pagado' : 'Pendiente' }}
-            </td>
-          </ng-container>
-
-          <!-- Cabecera y filas -->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+      <!-- Resultados -->
+      <div *ngIf="dataSource.data.length > 0; else noData" class="hu13-tarjetas-container">
+        <mat-card *ngFor="let pago of dataSource.data" class="hu13-tarjeta-pago">
+          <mat-card-title class="hu13-titulo-tarjeta">ID Pago: {{ pago.idP }}</mat-card-title>
+          <mat-card-content>
+            <p class="hu13-contenido-tarjeta">Fecha: {{ pago.fechaPago | date }}</p>
+            <p class="hu13-contenido-tarjeta">Monto: S/. {{ pago.monto | number:'1.2-2' }}</p>
+            <p class="hu13-contenido-tarjeta">Estado: {{ pago.estadoPago ? 'Pagado' : 'Pendiente' }}</p>
+          </mat-card-content>
+        </mat-card>
       </div>
 
-      <!-- Mensaje si no hay datos -->
+      <!-- Sin resultados -->
       <ng-template #noData>
-        <p>No se encontraron pagos para este evento.</p>
+        <p class="hu13-mensaje-vacio">No se encontraron pagos para este evento.</p>
       </ng-template>
-
-    </form>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

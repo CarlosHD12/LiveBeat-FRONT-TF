@@ -1,13 +1,9 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
 import {Router, RouterLink} from '@angular/router';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatButton} from '@angular/material/button';
 import {NgForOf, NgIf, NgStyle} from '@angular/common';
-import {MatCard, MatCardContent, MatCardHeader, MatCardTitle} from '@angular/material/card';
-import {CancionSharedService} from '../../services/cancion-shared-service';
-import {HU23} from '../../model/hu23';
-import {HU23Service} from '../../services/hu23-service';
-import {MatIcon} from '@angular/material/icon';
+import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
 import {CancionService} from '../../services/cancion-service';
 import {Cancion} from '../../model/cancion';
 
@@ -21,11 +17,8 @@ import {Cancion} from '../../model/cancion';
     NgStyle,
     NgForOf,
     MatCard,
-    MatCardHeader,
     MatCardContent,
     MatCardTitle,
-    MatIcon,
-    MatIconButton
   ],
   templateUrl: './artista-landing.html',
   styleUrl: './artista-landing.css'
@@ -74,6 +67,38 @@ export class ArtistaLanding implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/cancion']); // ir al registro
     }, 650);
+  }
+
+
+  showSplash2 = false;
+  splashStyles2: { [key: string]: string } = {};
+
+  triggerSplashToRuta(ruta: string) {
+    this.splashStyles2 = {
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      position: 'fixed',
+      backgroundColor: '#FF7200',
+      zIndex: '9999',
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.6s ease-in-out',
+    };
+
+    this.showSplash2 = true;
+
+    setTimeout(() => {
+      this.splashStyles2 = {
+        ...this.splashStyles2,
+        transform: 'scaleX(1)',
+      };
+    });
+
+    setTimeout(() => {
+      this.router.navigate([ruta]);
+    }, 600);
   }
 }
 

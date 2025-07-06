@@ -12,9 +12,7 @@
   <a [routerLink]="'/reportesART-inicio'">Reportes</a>
 
   <span class="spacer"></span>
-
-  <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/organizador" class="action-button login">
+  <button (click)="triggerSplashToRuta('/organizador')" class="action-button login">
     <span class="login-text">+ Organizador</span>
   </button>
 </mat-toolbar>
@@ -88,13 +86,9 @@
       </p>
 
 
-      <button (click)="triggerSplash($event)" mat-raised-button color="accent" class="hu09b">
-        <span class="mat-icon">⭐</span>
+      <button (click)="triggerSplashToRuta('/hu09')" class="hu09b">
         Ver Ranking
       </button>
-      <!-- Círculo splash -->
-      <div *ngIf="showSplash" [ngStyle]="splashStyles" class="splash-circle"></div>
-
     </div>
 
   </mat-toolbar>
@@ -141,6 +135,24 @@
     </div>
   </div>
 
+  <mat-toolbar class="hu12">
+    <!-- IZQUIERDA -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">🧾Historial de Contratos por Rango de Fechas</h2>
+      <p class="canciones-subtitulo">
+        Consulta y gestiona los contratos generados entre dos fechas específicas.<br>
+        Ideal para revisar acuerdos cerrados, pagos pendientes o eventos pasados.
+      </p>
+      <p class="canciones-subtitulo2">
+        Tu próximo show podría estar más cerca de lo que crees.
+      </p>
+
+      <button (click)="triggerSplashToRuta('/hu12')" class="action-button login">
+        <span class="login-text">Ver Eventos por Fecha</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
   <div class="hu11-container">
 
     <!-- Contenedor Izquierdo -->
@@ -185,9 +197,27 @@
     </div>
   </div>
 
+  <mat-toolbar class="hu13">
+    <!-- IZQUIERDA -->
+    <div class="zona-izquierda">
+      <h2 class="canciones-titulo">💲Historial de Pagos del Evento</h2>
+      <p class="canciones-subtitulo">
+        Revisa todos los pagos registrados para este evento, ordenados del más reciente al más antiguo.<br>
+        Mantén el control de tus ingresos y verifica el estado de cada transacción fácilmente.
+        Cada sol cuenta, y tu evento lo sabe.
+      </p>
+      <p class="canciones-subtitulo2">
+        Entra aquí para consultar todos los pagos asociados a tu evento y llevar el control como un pro.
+      </p>
+
+      <button (click)="triggerSplashToRuta('/hu13')" class="action-button login">
+        <span class="login-text">Ver Historial</span>
+      </button>
+    </div>
+  </mat-toolbar>
+
   <div class="hu14-container">
     <div class="hu14-content">
-
       <!-- TÍTULO Y SUBTÍTULO -->
       <h2 class="hu14-titulo">💰 Monto Total de Pagos Realizados</h2>
       <p class="hu14-subtitulo">
@@ -247,11 +277,24 @@
       </mat-card>
     </div>
   </div>
-
-
-
-
 </div>
+
+
+<mat-toolbar class="hu15">
+  <div class="hu14-content">
+    <!-- TÍTULO Y SUBTÍTULO -->
+    <h2 class="hu14-titulo">🏆Artistas por Contratos Firmados</h2>
+    <p class="hu14-subtitulo">
+      Descubre qué artistas están liderando en popularidad.<br>
+      El escenario no miente, los más contratados están aquí.
+    </p>
+
+    <button mat-raised-button (click)="triggerSplashToRuta('/hu15')" class="action-button login">
+      <span class="login-text">Ver Contratados</span>
+    </button>
+  </div>
+</mat-toolbar>
+
 
 <!-- FOOTER -->
 <mat-toolbar class="footer">
@@ -290,4 +333,5 @@
       </nav>
     </div>
   </mat-toolbar>
+<div class="splash-overlay-registro" *ngIf="showSplash2" [ngStyle]="splashStyles2"></div>
 

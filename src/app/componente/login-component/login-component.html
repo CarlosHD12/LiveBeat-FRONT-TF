@@ -17,8 +17,8 @@
           <input matInput type="password" formControlName="password" placeholder="Ingrese su password" />
         </div>
 
-        <button type="submit" class="action-button register">
-          <span class="register-text">Iniciar Sesión</span>
+        <button type="submit" class="action-button login">
+          <span class="login-text">Iniciar Sesión</span>
         </button>
 
         <div>
@@ -26,11 +26,10 @@
             <a routerLink="/ayuda" class="enlace-registrar">¿Olvidaste tu contraseña?</a>
           </p>
 
-
           <!-- Texto de registro -->
-        <p class="texto">¿Es nuevo en LiveBeat?
-          <a routerLink="/registrar" class="enlace-registrar">Crear una cuenta</a>
-        </p>
+          <p class="texto">¿Es nuevo en LiveBeat?
+            <a (click)="triggerSplashRegistro()" class="enlace-registrar">Crear una cuenta</a>
+          </p>
         </div>
 
       </form>
@@ -44,5 +43,10 @@
         {{ errorLogin }}
       </div>
     </div>
+
+    <!-- Splash para login correcto -->
+    <div class="splash-overlay-login" *ngIf="showSplash" [ngStyle]="splashStyles"></div>
+    <!-- Splash para enlace de registro -->
+    <div class="splash-overlay-register" *ngIf="showSplash2" [ngStyle]="splashStyles2"></div>
   </mat-card>
 </div>

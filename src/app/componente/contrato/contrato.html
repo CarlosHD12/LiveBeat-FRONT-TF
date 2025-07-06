@@ -43,7 +43,7 @@
         </div>
 
         <div class="botones-form">
-          <button routerLink="/contrato-inicio" class="action-button login">
+          <button routerLink="/organizador-inicio" class="action-button login">
             <span class="login-text">Cancelar</span>
           </button>
 
@@ -53,6 +53,9 @@
         </div>
 
       </form>
+      <div *ngIf="mostrarError" class="mensaje-error-ac">
+        Por favor, completa todos los campos antes de continuar
+      </div>
     </div>
   </mat-card>
 </div>

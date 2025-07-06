@@ -1,12 +1,11 @@
 import {Component, inject} from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router, RouterLink} from '@angular/router';
 import {ContratoService} from '../../services/contrato-service';
 import {EventoService} from '../../services/evento-service';
 import {Evento} from '../../model/evento';
 import {Contrato} from '../../model/contrato';
-import {MatButton} from '@angular/material/button';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MatCard} from '@angular/material/card';
 import {
   MatDatepicker,
   MatDatepickerModule,
@@ -15,13 +14,12 @@ import {
 import {MatFormField, MatHint, MatInput, MatInputModule, MatLabel, MatSuffix} from '@angular/material/input';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-contrato',
   imports: [
     MatCard,
-    MatCardTitle,
-    MatCardContent,
     ReactiveFormsModule,
     MatFormField,
     MatFormField,
@@ -36,8 +34,8 @@ import {MatSelect} from '@angular/material/select';
     MatDatepickerModule,
     MatSelect,
     MatOption,
-    MatButton,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './contrato.html',
   styleUrl: './contrato.css'
@@ -77,7 +75,11 @@ export class ContratoComponent {
     })
   }
 
+  public mostrarError = false;
+
   onSubmit() {
+    this.mostrarError = false;
+
     if (this.contratoForm.valid) {
       const contrato = new Contrato();
 
@@ -94,9 +96,9 @@ export class ContratoComponent {
 
       this.contratoService.insert(contrato).subscribe({
         next: data => {
-          alert("Contrato registrado!");
+          alert("¡Contrato registrado con éxito!");
           this.contratoService.actualizarLista();
-          this.router.navigate(['']);
+          this.router.navigate(['/organizador-inicio']);
         },
         error: err => {
           console.error("Error al registrar contrato", err);
@@ -104,8 +106,9 @@ export class ContratoComponent {
         }
       });
     } else {
-      alert("Formulario no válido!");
-      console.log("Formulario no válido!");
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
+
 }

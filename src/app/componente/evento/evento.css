@@ -233,3 +233,29 @@ mat-select {
 ::ng-deep .mat-calendar-next-button {
   color: white   !important;
 }
+
+.mensaje-error-ac {
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 16px;
+  background-color: #1E1E1E;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#1E1E1E, #1E1E1E),
+  linear-gradient(60deg, #FF7200, #FFB100);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  text-align: center;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.1rem;
+  color: white;
+  box-shadow: 0 10px 4px rgba(0, 0, 0, 0.43);
+  animation: aparecer 0.3s ease-out;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}

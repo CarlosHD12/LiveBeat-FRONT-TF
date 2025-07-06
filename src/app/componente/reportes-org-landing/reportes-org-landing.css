@@ -474,14 +474,12 @@ mat-select {
 
 /* ZONA IZQUIERDA */
 .zona-izquierda {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-align: center;
   padding: 1rem;
   color: white;
-  flex: 1;
+  flex: 2;
 }
 
 .canciones-titulo {
@@ -496,7 +494,7 @@ mat-select {
 
 .hu09 {
   background-color: #1E1E1E;
-  height: 400px;
+  height: 340px;
   padding: 2rem 3rem;
   display: flex;
   flex-direction: row;
@@ -529,12 +527,7 @@ mat-select {
 }
 
 
-.hu09b .mat-ico {
-  font-size: 24px;
-  color: white !important;
-  transition: transform 0.3s ease-in-out;
-  display: inline-block; /* 👈 esto es clave para que funcione transform */
-}
+
 
 /* Hover: fondo transparente, borde blanco, texto e ícono blancos */
 .hu09b:hover {
@@ -548,26 +541,6 @@ mat-select {
   transform: rotate(-360deg); /* ahora sí gira el emoji 🔁 */
 }
 
-/* CÍRCULO SPLASH */
-.splash-overlay {
-  position: fixed;
-  border-radius: 50%;
-  background: #FF7200;
-  z-index: 9999;
-  animation: expandSplash 0.7s ease-out forwards;
-  pointer-events: none;
-}
-
-@keyframes expandSplash {
-  from {
-    transform: scale(0);
-    opacity: 0.7;
-  }
-  to {
-    transform: scale(50);
-    opacity: 1;
-  }
-}
 
 .hu10-container {
   display: flex;
@@ -933,11 +906,10 @@ mat-select {
 
 .hu14-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: #121212;
-  min-height: 100vh;
-  padding: 3rem 1rem;
+  gap: 2rem;
+  padding: 2rem;
 }
 
 .hu14-content {
@@ -947,6 +919,7 @@ mat-select {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  padding: 2rem;
 }
 
 /* TITULO y SUBTITULO */
@@ -1070,4 +1043,72 @@ mat-select {
   background: none;
   color: white;
   -webkit-text-fill-color: white;
+}
+
+mat-toolbar.hu12 {
+  background-color: #1e1e1e; /* Fondo dark elegante */
+  padding: 3rem 2rem; /* Más alto y espacioso */
+  min-height: 320px; /* Altura personalizada */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Pixelify Sans', sans-serif;
+  gap: 1rem; /* Reducido el espacio entre los dos bloques */
+}
+
+mat-toolbar.hu13 {
+  background-color: #1e1e1e; /* Fondo dark elegante */
+  padding: 3rem 2rem; /* Más alto y espacioso */
+  min-height: 320px; /* Altura personalizada */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Pixelify Sans', sans-serif;
+  gap: 1rem; /* Reducido el espacio entre los dos bloques */
+}
+
+.plan-icon-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plan-emoji {
+  font-size: 2rem;
+  display: flex;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  align-items: center;
+  justify-content: center;
+}
+
+.hu15 {
+  background-color: #1e1e1e;
+  padding: 1rem 1rem;
+  min-height: 260px;
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
+}
+
+.splash-overlay-registro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  z-index: 9999;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s ease-in-out;
+  pointer-events: none;
 }

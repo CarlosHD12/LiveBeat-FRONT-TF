@@ -1,57 +1,48 @@
-<mat-card>
-  <mat-card-title>Listado de Calificaciones por Artista</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="calificacionForm" (ngSubmit)="listarCalificaciones()" class="form-container">
+<div class="hu24-container">
+  <h1 class="hu24-titulo">⭐ Listado de Calificaciones por Artista</h1>
 
-      <!-- Campo: Seleccionar Artista -->
-      <mat-form-field appearance="fill">
-        <mat-label>Artista</mat-label>
-        <mat-select formControlName="artista" required>
-          @for (a of listaA; track a.idA) {
-            <mat-option [value]="a.idA">
-              {{ a.nombreArtista }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+  <mat-card class="hu24-card">
+    <mat-card-content>
+      <form [formGroup]="calificacionForm" (ngSubmit)="listarCalificaciones()" class="hu24-form">
 
-      <!-- Botón: Listar Calificaciones -->
-      <button mat-raised-button color="primary" type="submit">Listar Calificaciones</button>
+        <!-- Texto + Selector -->
+        <div class="hu24-selector-group">
+          <span class="hu24-texto-guia">Elige un artista para ver sus calificaciones:</span>
 
-      <!-- Tabla: Mostrar resultados -->
-      <div *ngIf="dataSource.data.length > 0; else noData">
-        <h3>Calificaciones del artista</h3>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <mat-form-field appearance="outline" class="hu24-form-field">
+            <mat-label>Artista</mat-label>
+            <mat-select formControlName="artista" required>
+              @for (a of listaA; track a.idA) {
+                <mat-option [value]="a.idA">
+                  {{ a.nombreArtista }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-          <!-- Nombre del Organizador -->
-          <ng-container matColumnDef="nombreOrganizador">
-            <th mat-header-cell *matHeaderCellDef>Organizador</th>
-            <td mat-cell *matCellDef="let calificacion">{{ calificacion.nombreOrganizador }}</td>
-          </ng-container>
+        <!-- Botón -->
+        <div class="hu24-boton-contenedor">
+          <button mat-raised-button type="submit" class="action-button register">
+            <span class="register-text">Listar Calificaciones</span>
+          </button>
+        </div>
 
-          <!-- Comentario -->
-          <ng-container matColumnDef="comentario">
-            <th mat-header-cell *matHeaderCellDef>Comentario</th>
-            <td mat-cell *matCellDef="let calificacion">{{ calificacion.comentario }}</td>
-          </ng-container>
+        <!-- Listado en tarjetas -->
+        <div *ngIf="dataSource.data.length > 0; else noData" class="hu24-tarjetas-container">
+          <div *ngFor="let calificacion of dataSource.data" class="hu24-tarjeta-calificacion">
+            <h3 class="hu24-titulo-tarjeta">Organizador: {{ calificacion.nombreOrganizador }}</h3>
+            <p class="hu24-contenido-tarjeta">Comentario: {{ calificacion.comentario }}</p>
+            <p class="hu24-contenido-tarjeta">Valoración: {{ calificacion.valoracion }}/10</p>
+          </div>
+        </div>
 
-          <!-- Valoración -->
-          <ng-container matColumnDef="valoracion">
-            <th mat-header-cell *matHeaderCellDef>Valoración</th>
-            <td mat-cell *matCellDef="let calificacion">{{ calificacion.valoracion }}/10</td>
-          </ng-container>
+        <!-- No hay calificaciones -->
+        <ng-template #noData>
+          <p class="hu24-mensaje-vacio">No se encontraron calificaciones para este artista.</p>
+        </ng-template>
 
-          <!-- Cabecera y filas de la tabla -->
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-
-      <!-- Mensaje si no hay datos -->
-      <ng-template #noData>
-        <p>No se encontraron calificaciones para este artista.</p>
-      </ng-template>
-
-    </form>
-  </mat-card-content>
-</mat-card>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

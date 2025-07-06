@@ -1,13 +1,201 @@
-.form-container {
+/* 🎯 Contenedor principal */
+.hu13-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  padding: 2rem;
+  background-color: #121212;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-mat-form-field {
-  width: 300px;
+/* 🏷️ Título principal */
+.hu13-titulo {
+  font-size: 2rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  text-align: center;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
 }
 
-mat-table {
-  margin-top: 20px;
+/* 📄 Subtítulo */
+.hu13-subtitulo {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.hu13-subtexto {
+  color: #BBBBBB;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hu13-tarjetas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 850px;
+  border-radius: 1rem;
+  background-color: #101010;
+  box-shadow: 0 10px 0 rgb(0, 0, 0);
+}
+
+/* 🎫 Cada tarjeta individual */
+.hu13-tarjeta-pago {
+  width: 100%;
+  max-width: 700px;
+  background-color: #1e1e1e;
+  padding: 1rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-shadow: 0 10px 0 rgb(0, 0, 0);
+  font-family: 'Pixelify Sans', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+
+
+.hu13-tarjeta-pago:hover {
+  border-color: white;
+}
+
+/* Cambia a blanco el título y contenido cuando haces hover */
+.hu13-tarjeta-pago:hover .hu13-titulo-tarjeta,
+.hu13-tarjeta-pago:hover .hu13-contenido-tarjeta {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: white;
+}
+
+
+.hu13-tarjeta-pago:hover .hu13-titulo-tarjeta,
+.hu13-tarjeta-pago:hover .hu13-detalle-tarjeta {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+  color: white;
+}
+
+/* 🎤 Título dentro de cada tarjeta */
+.hu13-titulo-tarjeta,
+.hu13-detalle-tarjeta {
+  font-family: 'Pixelify Sans', sans-serif;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.hu13-mensaje-vacio {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.hu13-tarjetas-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.hu13-tarjetas-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.hu13-tarjetas-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  border-radius: 8px;
+}
+
+.hu13-card {
+  width: 100%;
+  max-width: 850px;
+  margin: 2rem auto;
+  background-color: #1E1E1E;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#1E1E1E, #1E1E1E), linear-gradient(60deg, #FF7200, #FFB100);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.hu13-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem; /* Más separación entre texto y select */
+  flex-wrap: wrap;
+  margin-bottom: 1px;
+}
+
+.hu13-texto-previo {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 2rem;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Por si acaso */
+  transition: all 0.3s ease-in-out;
+}
+
+.register {
+  border: 2px solid #2a2a2a;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  padding: 8px 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+}
+
+.register-text {
+  color: black;
+  position: relative;
+  font-size: 1.2rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+.register:hover {
+  background: transparent;
+  border-color: white;
+}
+
+.register:hover .register-text {
+  color: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.hu13-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+
+.hu13-contenido-tarjeta {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1rem;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
 }

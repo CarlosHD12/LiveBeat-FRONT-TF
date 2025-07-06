@@ -1,47 +1,32 @@
-<mat-card>
-  <mat-card-title>Listado de Calificaciones Recomendadas</mat-card-title>
-  <mat-card-content>
+<div class="hu09-container">
+  <!-- Título y Subtítulo -->
+  <h1 class="hu09-titulo">⭐ Calificaciones Recomendadas</h1>
+  <p class="hu09-subtitulo">Dale un vistazo a las opiniones sobre nuestros artistas top</p>
 
-    <!-- Botón para cargar los datos -->
-    <button mat-raised-button color="primary" (click)="cargarCalificaciones()">
-      Cargar Calificaciones
+
+  <div class="hu09-card">
+
+    <button mat-raised-button class="action-button register" (click)="cargarCalificaciones()">
+      <span class="register-text">Cargar Calificaciones</span>
     </button>
 
-    <!-- Tabla para mostrar resultados -->
     <div *ngIf="dataSource.data.length > 0; else noData">
-      <h3>Calificaciones</h3>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-        <!-- Nombre del Artista -->
-        <ng-container matColumnDef="nombreArtista">
-          <th mat-header-cell *matHeaderCellDef>Nombre del Artista</th>
-          <td mat-cell *matCellDef="let calificacion">{{ calificacion.nombreArtista }}</td>
-        </ng-container>
-
-        <!-- Comentario -->
-        <ng-container matColumnDef="comentario">
-          <th mat-header-cell *matHeaderCellDef>Comentario</th>
-          <td mat-cell *matCellDef="let calificacion">{{ calificacion.comentario }}</td>
-        </ng-container>
-
-        <!-- Valoración -->
-        <ng-container matColumnDef="valoracion">
-          <th mat-header-cell *matHeaderCellDef>Valoración</th>
-          <td mat-cell *matCellDef="let calificacion">
-            {{ calificacion.valoracion }}/10
-          </td>
-        </ng-container>
-
-        <!-- Cabecera y filas -->
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+      <div class="hu09-listado">
+        <mat-card *ngFor="let calificacion of dataSource.data" class="hu09-calificacion-card">
+          <mat-card-title class="hu09-card-title">{{ calificacion.nombreArtista }}</mat-card-title>
+          <mat-card-content>
+            <p class="hu09-comentario">"{{ calificacion.comentario }}"</p>
+            <p class="hu09-valoracion">Valoración: {{ calificacion.valoracion }}/10</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
 
-    <!-- Mensaje si no hay datos -->
+    <!-- Si no hay data -->
     <ng-template #noData>
-      <p>No hay calificaciones recomendadas disponibles.</p>
+      <div class="hu09-no-data">
+        <p>No hay calificaciones recomendadas disponibles</p>
+      </div>
     </ng-template>
-
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>

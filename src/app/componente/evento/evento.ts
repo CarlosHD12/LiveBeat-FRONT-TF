@@ -1,27 +1,26 @@
 import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Evento} from '../../model/evento';
 import {EventoService} from '../../services/evento-service';
 import {OrganizadorService} from '../../services/organizador-service';
 import {Organizador} from '../../model/organizador';
 import {MatButton} from '@angular/material/button';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MatCard} from '@angular/material/card';
 import {MatFormField, MatHint, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
-import {MatNativeDateModule, MatOption, provideNativeDateAdapter} from '@angular/material/core';
+import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
 import {
   MatDatepicker,
   MatDatepickerModule,
   MatDatepickerToggle
 } from '@angular/material/datepicker';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-evento',
   imports: [
     MatCard,
-    MatCardTitle,
-    MatCardContent,
     ReactiveFormsModule,
     MatFormField,
     MatFormField,
@@ -36,8 +35,8 @@ import {
     MatDatepickerModule,
     MatSelect,
     MatOption,
-    MatButton,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './evento.html',
   styleUrl: './evento.css'
@@ -51,6 +50,9 @@ export class EventoComponent {
   public idOrganizadorSeleccionado:number = 0;
   lista: Organizador[] = [];
   organizador: Organizador = new Organizador();
+  route: ActivatedRoute = inject(ActivatedRoute);
+  id: number = 0;
+  edicion = false;
 
   constructor() {
     this.eventoForm = this.fb.group({
@@ -65,6 +67,27 @@ export class EventoComponent {
 
   ngOnInit() {
     this.loadLista();
+    this.route.params.subscribe(data => {
+      this.id = data['id'];
+      this.edicion = this.id != null;
+      if (this.edicion) {
+        this.loadForm();
+      }
+    });
+  }
+
+
+  loadForm() {
+    this.eventoService.listId(this.id).subscribe(data => {
+      this.eventoForm.patchValue({
+        idE: data.idE,
+        nombreEvento: data.nombreEvento,
+        fecha: data.fecha,
+        tipoEvento: data.tipoEvento,
+        descripcion: data.descripcion,
+        organizador: data.organizador?.idO
+      });
+    });
   }
 
   loadLista() {
@@ -78,11 +101,15 @@ export class EventoComponent {
     })
   }
 
+  public mostrarError = false;
+
   onSubmit() {
+    this.mostrarError = false;
+
     if (this.eventoForm.valid) {
       const evento = new Evento();
 
-      evento.idE = this.eventoForm.value.idE;
+      evento.idE = this.id; // Usamos el id si estamos editando
       evento.nombreEvento = this.eventoForm.value.nombreEvento;
       evento.fecha = this.eventoForm.value.fecha;
       evento.tipoEvento = this.eventoForm.value.tipoEvento;
@@ -94,20 +121,34 @@ export class EventoComponent {
 
       console.log("Evento leído del Form:", evento);
 
-      this.eventoService.insert(evento).subscribe({
-        next: data => {
-          alert("Evento registrado!");
-          this.eventoService.actualizarLista();
-          this.router.navigate(['']);
-        },
-        error: err => {
-          console.error("Error al registrar evento", err);
-          alert("Hubo un error al guardar la evento");
-        }
-      });
+      if (this.edicion) {
+        this.eventoService.update(evento).subscribe({
+          next: () => {
+            alert("¡Evento actualizado con éxito!");
+            this.eventoService.actualizarLista();
+            this.router.navigate(['/organizador-inicio']);
+          },
+          error: err => {
+            console.error("Error al actualizar el evento", err);
+            alert("Hubo un error al actualizar el evento");
+          }
+        });
+      } else {
+        this.eventoService.insert(evento).subscribe({
+          next: () => {
+            alert("¡Evento registrado con éxito!");
+            this.eventoService.actualizarLista();
+            this.router.navigate(['/organizador-inicio']);
+          },
+          error: err => {
+            console.error("Error al registrar el evento", err);
+            alert("Hubo un error al guardar el evento");
+          }
+        });
+      }
     } else {
-      alert("Formulario no válido!");
-      console.log("Formulario no válido!");
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
 }

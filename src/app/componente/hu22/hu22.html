@@ -1,54 +1,43 @@
-<mat-card class="example-card">
-  <mat-card-title>Buscar Eventos por Artista</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="calificacionForm" (ngSubmit)="buscarEventos()" class="form-container">
+<div class="hu22-container">
+  <h1 class="hu22-titulo">🎤 Buscar Eventos por Artista</h1>
+  <p class="hu22-subtitulo">Selecciona a tu artista favorito y descubre en qué eventos ha participado.</p>
 
-      <!-- Campo para elegir artista -->
-      <mat-form-field appearance="fill">
-        <mat-label>Artista</mat-label>
-        <mat-select formControlName="artista" required>
-          @for (org of listaA; track org.idA) {
-            <mat-option [value]="org.idA">
-              {{ org.nombreArtista }}
-            </mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+  <mat-card class="hu22-card">
+    <mat-card-content>
+      <form [formGroup]="calificacionForm" (ngSubmit)="buscarEventos()" class="hu22-form">
 
-      <!-- Botón para buscar -->
-      <button mat-raised-button color="primary" type="submit">Buscar</button>
+        <!-- Selector de Artista -->
+        <mat-form-field appearance="outline" class="hu22-form-field">
+          <mat-label>Selecciona un artista</mat-label>
+          <mat-select formControlName="artista" required>
+            @for (org of listaA; track org.idA) {
+              <mat-option [value]="org.idA">
+                {{ org.nombreArtista }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
 
-      <!-- Tabla para mostrar resultados -->
-      <div *ngIf="eventos.length > 0; else noData">
-        <h3>Eventos donde el artista está contratado</h3>
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-          <!-- Nombre del Evento -->
-          <ng-container matColumnDef="nombreEvento">
-            <th mat-header-cell *matHeaderCellDef>Nombre del Evento</th>
-            <td mat-cell *matCellDef="let evento">{{ evento.nombreEvento }}</td>
-          </ng-container>
+        <!-- Botón -->
+        <button mat-raised-button type="submit" class="action-button register">
+          <span class="register-text">Buscar Eventos</span>
+        </button>
+      </form>
 
-          <!-- Fecha del Contrato -->
-          <ng-container matColumnDef="fechaContrato">
-            <th mat-header-cell *matHeaderCellDef>Fecha del Contrato</th>
-            <td mat-cell *matCellDef="let evento">{{ evento.fechaContrato | date }}</td>
-          </ng-container>
-
-          <!-- Monto Total -->
-          <ng-container matColumnDef="montoTotal">
-            <th mat-header-cell *matHeaderCellDef>Monto Total</th>
-            <td mat-cell *matCellDef="let evento">S/. {{ evento.montoTotal | number:'1.2-2' }}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+      <!-- Listado de tarjetas -->
+      <div *ngIf="eventos.length > 0; else noData" class="hu22-tarjetas-container">
+        <div *ngFor="let evento of eventos" class="hu22-tarjeta-evento">
+          <h3 class="hu22-titulo-tarjeta">{{ evento.nombreEvento }}</h3>
+          <p class="hu22-contenido-tarjeta">Fecha: {{ evento.fechaContrato | date }}</p>
+          <p class="hu22-contenido-tarjeta">Monto Total: S/. {{ evento.montoTotal | number:'1.2-2' }}</p>
+        </div>
       </div>
 
+      <!-- Si no hay datos -->
       <ng-template #noData>
-        <p>No se encontraron eventos para este artista.</p>
+        <p class="hu22-mensaje-vacio">No se encontraron eventos para este artista.</p>
       </ng-template>
 
-    </form>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

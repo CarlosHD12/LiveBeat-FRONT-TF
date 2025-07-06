@@ -3,16 +3,11 @@ import {MatToolbar} from '@angular/material/toolbar';
 import {Router, RouterLink} from '@angular/router';
 import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardContent, MatCardModule, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
-import {CommonModule, NgForOf, NgIf, NgStyle} from '@angular/common';
+import {CommonModule, NgIf, NgStyle} from '@angular/common';
 import {HU23Service} from '../../services/hu23-service';
 import {ArtistaService} from '../../services/artista-service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
   MatTableDataSource
 } from '@angular/material/table';
 import {HU23} from '../../model/hu23';
@@ -44,16 +39,6 @@ import {HU26} from '../../model/hu26';
     ReactiveFormsModule,
     CommonModule,
     MatCardModule,
-    MatCell,
-    MatCellDef,
-    MatColumnDef,
-    MatHeaderCell,
-    MatHeaderRow,
-    MatHeaderRowDef,
-    MatRow,
-    MatRowDef,
-    MatTable,
-    MatHeaderCellDef,
   ],
   templateUrl: './reportes-art-landing.html',
   styleUrl: './reportes-art-landing.css'
@@ -61,7 +46,6 @@ import {HU26} from '../../model/hu26';
 export class ReportesARTLanding {
   hu23Service = inject(HU23Service);
   hu25Service = inject(HU25Service);
-  displayedColumns3: string[] = ['totalPagado'];
   dataSource3 = new MatTableDataSource<HU26>();
   hu26Service = inject(HU26Service);
   artistaService = inject(ArtistaService);
@@ -152,5 +136,36 @@ export class ReportesARTLanding {
     setTimeout(() => {
       this.router.navigate(['/hu22']);
     }, 650); // Tiempo de la animación
+  }
+
+  showSplash2 = false;
+  splashStyles2: { [key: string]: string } = {};
+
+  triggerSplashToRuta(ruta: string) {
+    this.splashStyles2 = {
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      position: 'fixed',
+      backgroundColor: '#FF7200',
+      zIndex: '9999',
+      transform: 'scaleX(0)',
+      transformOrigin: 'left center',
+      transition: 'transform 0.6s ease-in-out',
+    };
+
+    this.showSplash2 = true;
+
+    setTimeout(() => {
+      this.splashStyles2 = {
+        ...this.splashStyles2,
+        transform: 'scaleX(1)',
+      };
+    });
+
+    setTimeout(() => {
+      this.router.navigate([ruta]);
+    }, 600);
   }
 }

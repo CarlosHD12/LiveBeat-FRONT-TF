@@ -48,15 +48,19 @@
         </div>
 
         <div class="botones-form">
-          <button routerLink="/evento-inicio" class="action-button login">
+          <button routerLink="/organizador-inicio" class="action-button login">
             <span class="login-text">Cancelar</span>
           </button>
 
           <button type="button" class="action-button register" (click)="onSubmit()">
-            <span class="register-text">Registrar</span>
+            <span class="register-text">
+              {{ edicion ? 'Actualizar' : 'Registrar' }}
+            </span>
           </button>
         </div>
-
+        <div *ngIf="mostrarError" class="mensaje-error-ac">
+          Por favor, completa todos los campos antes de continuar
+        </div>
       </form>
     </div>
   </mat-card>

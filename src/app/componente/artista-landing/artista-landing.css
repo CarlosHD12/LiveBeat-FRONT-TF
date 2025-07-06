@@ -231,6 +231,7 @@ body {
 .hero-content-left {
   text-align: center;
   padding: 3rem;
+  flex: 1;
   max-width: 700px;
 }
 
@@ -414,14 +415,7 @@ body {
   vertical-align: middle;
 }
 
-.contenido-y-emoji {
-  display: flex;
-  align-items: center;
-}
 
-.hero-content-left {
-  flex: 1;
-}
 
 .emoji-container-right {
   width: 350px;
@@ -453,15 +447,6 @@ body {
 }
 
 
-.canciones {
-  background-color: #1E1E1E;
-  height: 200px; /* Altura fija para contener las canciones */
-  padding: 1rem 4rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Importante: evita que se salga */
-  box-shadow: 0 10px 4px rgba(0, 0, 0, 0.43);
-}
 
 /* Este div es el que tiene el scroll */
 .tarjetas-canciones-scroll {
@@ -702,4 +687,18 @@ body {
   gap: 10rem; /* Espacio entre botones */
   justify-content: center; /* Centrado horizontal (opcional) */
   margin-top: 1rem;
+}
+
+.splash-overlay-registro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #FF7200, #FFB100); /* El 🔥 degradado */
+  z-index: 9999;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s ease-in-out;
+  pointer-events: none;
 }

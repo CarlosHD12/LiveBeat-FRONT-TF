@@ -11,6 +11,7 @@ import {MatCard} from '@angular/material/card';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {MatOption} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-calificacion',
@@ -23,7 +24,8 @@ import {MatSelect} from '@angular/material/select';
     MatOption,
     MatSelect,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './calificacion.html',
   styleUrl: './calificacion.css'
@@ -78,7 +80,11 @@ export class CalificacionComponent {
     });
   }
 
+  public mostrarError = false;
+
   onSubmit() {
+    this.mostrarError = false;
+
     if (this.calificacionForm.valid) {
       const calificacion = new Calificacion();
 
@@ -98,9 +104,9 @@ export class CalificacionComponent {
 
       this.calificacionService.insert(calificacion).subscribe({
         next: data => {
-          alert("Calificación registrada!");
+          alert("¡Calificación registrada con éxito!");
           this.calificacionService.actualizarLista();
-          this.router.navigate(['']);
+          this.router.navigate(['/organizador-inicio']);
         },
         error: err => {
           console.error("Error al registrar calificación", err);
@@ -108,8 +114,8 @@ export class CalificacionComponent {
         }
       });
     } else {
-      alert("Formulario no válido!");
-      console.log("Formulario no válido!");
+      this.mostrarError = true;
+      console.log("Formulario no válido");
     }
   }
 }

@@ -3,11 +3,6 @@ import {HU24Service} from '../../services/hu24-service';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ArtistaService} from '../../services/artista-service';
 import {
-  MatCell, MatCellDef,
-  MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable,
   MatTableDataSource,
 } from '@angular/material/table';
 import {HU24} from '../../model/hu24';
@@ -20,18 +15,7 @@ import {CommonModule, NgIf} from '@angular/common';
 @Component({
   selector: 'app-hu24',
   imports: [
-    MatColumnDef,
-    MatHeaderCell,
-    MatCell,
-    MatTable,
-    MatCellDef,
-    MatHeaderCellDef,
-    MatHeaderRow,
-    MatRow,
-    MatRowDef,
-    MatHeaderRowDef,
     MatCard,
-    MatCardTitle,
     MatCardContent,
     ReactiveFormsModule,
     MatFormField,

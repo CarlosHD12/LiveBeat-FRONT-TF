@@ -246,10 +246,434 @@ body {
   vertical-align: middle;
 }
 
-.main-content {
+/* siempre copiar */
+
+.contenido-y-emoji {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-emoji, 25rem); /* ← Aquí controlas la distancia */
+  flex-wrap: wrap;
+}
+
+.hero-content-left {
+  text-align: center;
+  padding: 3rem;
+  flex: 1;
+  max-width: 700px;
+}
+
+
+
+.titulo-principal {
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.subtexto {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.emoji-container-right {
+  width: 350px;
+  height: 350px;
+  border-radius: 100%; /* círculo real */
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.emoji-decorativo {
+  font-size: 13rem;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.contenido-y-emoji {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-emoji, 25rem); /* ← Aquí controlas la distancia */
+  flex-wrap: wrap;
+}
+
+.canciones {
+  background-color: #1E1E1E;
+  height: 350px;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  overflow: hidden;
+  gap: 2rem;
+}
+
+.zona-izquierda {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  flex: 1;
+
+}
+
+.canciones-titulo {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: bold;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.canciones-subtitulo {
+  font-size: 1.2rem;
+  max-width: 940px;
+  margin-bottom: 1px;
+}
+
+.canciones-subtitulo2 {
+  font-size: 1.2rem;
+  max-width: 940px;
+  margin-bottom: 1.5rem;
+}
+
+.grupo-botones {
+  display: flex;
+  gap: 10rem; /* Espacio entre botones */
+  justify-content: center; /* Centrado horizontal (opcional) */
+  margin-top: 1rem;
+}
+
+
+.comenzar {
+  border: 2px solid black;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  padding: 30px 30px;
+  font-family: 'Pixelify Sans', sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 2rem;
+  color: black !important;
+}
+
+/* Hover: fondo transparente, borde blanco, texto e ícono blancos */
+.comenzar:hover {
+  background: transparent;
+  border-color: white;
+  color: white !important;
+}
+
+.comenzar:hover .mat-icon {
+  color: white !important;
+  transform: rotate(-360deg); /* ahora sí gira el emoji 🔁 */
+}
+
+
+/* CÍRCULO SPLASH */
+.splash-overlay {
+  position: fixed;
+  border-radius: 50%;
+  background: #FF7200;
+  z-index: 9999;
+  animation: expandSplash 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes expandSplash {
+  from {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(50);
+    opacity: 1;
+  }
+}
+.action-button {
+  font-size: 20px;
+  margin-left: 20px;
+  font-weight: normal;
+}
+
+.cerrar {
+  padding: 8px 20px;
+  border: 2px solid transparent;
+  font-size: 2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background: linear-gradient(#1E1E1E, #1E1E1E) padding-box,
+  linear-gradient(90deg, #FF7200, #FFB100) border-box;
+  background-clip: padding-box, border-box;
+  -webkit-background-clip: padding-box, border-box;
+}
+
+.cerrar-text {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.cerrar:hover {
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  border: 2px solid white;
+}
+
+.cerrar:hover .login-text {
+  background: none;
+  color: white;
+  -webkit-text-fill-color: white;
+}
+.tarjetas-canciones-scroll {
+  overflow-y: auto;
+  height: 90%;
+  width: 510%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-right: 1rem;
+}
+
+/* Scrollbar personalizado (opcional pero fachero) */
+.tarjetas-canciones-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tarjetas-canciones-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(#FF7200, #FFB100);
+  border-radius: 10px;
+}
+
+
+.tarjeta-cancion {
+  border-radius: 16px;
+  padding: 1.2rem;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #1E1E1E;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  font-family: 'Pixelify Sans', sans-serif;
+  flex-direction: column; /* Esto permite que el botón baje */
+  transition: transform 0.3s ease, color 0.3s ease, border 0.3s ease;
+  border: 2px solid transparent;
+  background-origin: border-box;
+  background-image:
+    linear-gradient(#1E1E1E, #1E1E1E),
+    linear-gradient(60deg, #FF7200, #FFB100);
+}
+
+/* Botón abajo a la izquierda */
+.boton-editar {
+  margin-top: auto;          /* ¡Este empuja hacia abajo! */
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-top: 1rem;
+}
+
+/* Título con degradado y en negrita */
+.tarjeta-cancion mat-card-title {
+  font-size: 1.4rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  margin-bottom: 0.5rem;
+  background-image: linear-gradient(60deg, #FF7200, #FFB100);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Texto normal con degradado */
+.tarjeta-cancion mat-card-content p,
+.tarjeta-cancion .texto-editar {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  background-image: linear-gradient(60deg, #FF7200, #FFB100);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Hover: texto y borde blancos */
+.tarjeta-cancion:hover {
+  transform: scale(1.03);
+  background-color: #111111;
+  border: 2px solid white;
+}
+
+.tarjeta-cancion:hover mat-card-title,
+.tarjeta-cancion:hover mat-card-content p,
+.tarjeta-cancion:hover .texto-editar {
+  -webkit-text-fill-color: white;
+  color: white;
+  background-image: none;
+}
+.contenido-tarjeta {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+
+.plan-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  position: relative; /* Necesario para que el hijo se posicione sobre él */
+  margin-right: 1.2rem;
+}
+
+.plan-emo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra perfectamente */
+  font-size: 2rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  background: white;
+  -webkit-background-clip: text;
+  justify-content: center;
+  -webkit-text-fill-color: transparent;
+}
+
+.contenido-info {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 21rem;}
-/* siempre copiar */
+  justify-content: space-between;
+}
+
+.titulo-suscripcion {
+  text-align: center;
+  font-size: 2.5rem;
+  color: white;
+  margin-top: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo-suscripcion {
+  text-align: center;
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+
+.plan-horizontal {
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 650px;
+  border: 2px solid transparent;
+  background: #1E1E1E; /* Fondo interno */
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+  gap: 1.5rem;
+}
+
+.plan-horizontal:hover {
+  transform: scale(1.05);
+}
+
+.planes-container-horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  background: #121212;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding: 2rem 1rem;
+}
+
+.plan-icon-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plan-emoji {
+  font-size: 6rem;
+  display: flex;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.plan-titulo {
+  font-size: 1.5rem;
+  margin: 5px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+.plan-subtitulo {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plan-lista {
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.plan-item {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.splash-overlay-registro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  z-index: 9999;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.6s ease-in-out;
+  pointer-events: none;
+}
 

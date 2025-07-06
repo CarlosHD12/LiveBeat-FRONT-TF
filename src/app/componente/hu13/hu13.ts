@@ -19,7 +19,7 @@ import {CommonModule} from '@angular/common';
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './hu13.html',
   styleUrl: './hu13.css'

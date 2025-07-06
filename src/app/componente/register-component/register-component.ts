@@ -22,7 +22,6 @@ import {MatButton} from '@angular/material/button';
     MatNativeDateModule,
     MatDatepickerModule,
     MatOption,
-    MatButton,
     RouterLink,
   ],
   templateUrl: './register-component.html',
@@ -58,16 +57,16 @@ export class RegisterComponent {
         // Paso 2: Asignar rol
         this.loginService.asignarRol(res.id, formData.rolId).subscribe({
           next: () => {
-            alert('✅ Usuario registrado correctamente');
+            alert('Usuario registrado correctamente');
             this.router.navigate(['/login']);
           },
           error: (err) => {
-            console.error('❌ Error asignando rol', err);
+            console.error('Error asignando rol', err);
           },
         });
       },
       error: (err) => {
-        console.error('❌ Error creando usuario', err);
+        console.error('Error creando usuario', err);
       }
     });
   }

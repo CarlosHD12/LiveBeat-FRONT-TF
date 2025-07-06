@@ -219,7 +219,42 @@
   box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
 }
 
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.splash-overlay-register {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  animation: splashExpandLogin 0.5s ease-out forwards;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* CÍRCULO SPLASH */
+.splash-overlay-login {
+  position: fixed;
+  border-radius: 50%;
+  background: #FF7200;
+  z-index: 99;
+  animation: expandSplash 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes expandSplash {
+  from {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  to {
+    transform: scale(50);
+    opacity: 1;
+  }
+}
+
+
+.splash-izquierda {
+  pointer-events: none;
 }

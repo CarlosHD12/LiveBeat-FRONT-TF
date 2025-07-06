@@ -1,0 +1,155 @@
+.hu24-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.hu24-titulo {
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'Pixelify Sans', sans-serif;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.hu24-card {
+  width: 100%;
+  max-width: 850px;
+  background-color: #1E1E1E;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background-image: linear-gradient(#1E1E1E, #1E1E1E), linear-gradient(60deg, #FF7200, #FFB100);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hu24-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hu24-selector-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.hu24-texto-guia {
+  color: white;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.hu24-form-field {
+  width: 100%;
+  max-width: 350px;
+  font-family: 'Pixelify Sans', sans-serif;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.hu24-form-field .mat-select-value-text {
+  font-family: 'Pixelify Sans', sans-serif;
+  color: white;
+}
+
+.hu24-form-field .mat-form-field-label {
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.hu24-boton-contenedor {
+  display: flex;
+  justify-content: center;
+}
+
+.hu24-tarjetas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #101010;
+  border-radius: 1rem;
+}
+
+.hu24-tarjeta-calificacion {
+  width: 100%;
+  max-width: 670px;
+  background-color: #1E1E1E;
+  padding: 0.7rem 1rem;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-shadow: 0 10px 0 rgb(0, 0, 0);
+  font-family: 'Pixelify Sans', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.hu24-tarjeta-calificacion:hover {
+  border-color: white;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.hu24-tarjeta-calificacion:hover .hu24-titulo-tarjeta,
+.hu24-tarjeta-calificacion:hover .hu24-contenido-tarjeta {
+  color: white;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+
+.hu24-titulo-tarjeta,
+.hu24-contenido-tarjeta {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: normal;
+  background: linear-gradient(60deg, #FF7200, #FFB100);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.hu24-mensaje-vacio {
+  color: white;
+  text-align: center;
+  font-family: 'Pixelify Sans', sans-serif;
+  margin-top: 2rem;
+}
+
+.register {
+  border: 2px solid #2a2a2a;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #FF7200, #FFB100);
+  padding: 8px 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 0;
+}
+.register-text {
+  color: black;
+  position: relative;
+  font-size: 1.2rem;
+  font-family: 'Pixelify Sans', sans-serif;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
+.register:hover {
+  background: transparent;
+  border-color: white;
+}
+.register:hover .register-text {
+  color: white;
+}

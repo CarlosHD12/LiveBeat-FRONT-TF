@@ -1,4 +1,3 @@
-/* siempre copiar */
 * {
   font-family: 'Pixelify Sans', sans-serif;
 }
@@ -100,7 +99,7 @@ body {
 }
 
 .register {
-  border: 2px solid #2a2a2a;
+  border: 2px solid black;
   border-radius: 20px;
   background: linear-gradient(90deg, #FF7200, #FFB100);
   padding: 8px 20px;
@@ -110,6 +109,12 @@ body {
   z-index: 0;
 }
 
+.register-text {
+  color: black;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+}
 
 .register:hover {
   background: transparent;
@@ -199,7 +204,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
-  font-size: 1px;
+  font-size: 14px;
   line-height: 1.4;
   text-align: right;
 }
@@ -242,18 +247,22 @@ body {
 }
 
 .main-content {
-  flex: 1;
   display: flex;
-  background-color: #121212;
-  flex-direction: column;
-  padding: 6.5rem;
+  padding: 7.5rem;
+  gap: 1rem;
+}
+
+
+.ayuda-left, .ayuda-right {
+  flex: 5rem; /* Ambos ocupan el mismo espacio */
+  max-width: 55%; /* O puedes usar 50% si quieres */
 }
 /* siempre copiar */
 
 .ayuda-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* 👈 sube el contenido */
+  align-items: flex-start;
   gap: 4rem;
   padding: 2rem 3rem;
   flex-wrap: wrap;
@@ -423,4 +432,24 @@ body {
   -webkit-text-fill-color: transparent;
   color: transparent;
   font-weight: normal;
+}
+/* CÍRCULO SPLASH */
+.splash-overlay {
+  position: fixed;
+  border-radius: 50%;
+  background: #FF7200;
+  z-index: 9999;
+  animation: expandSplash 0.7s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes expandSplash {
+  from {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(50);
+    opacity: 1;
+  }
 }

@@ -1,35 +1,25 @@
 import {Component, inject} from '@angular/core';
-import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
+import {MatInput, MatInputModule, MatLabel} from '@angular/material/input';
 import {ArtistaService} from '../../services/artista-service';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {MatCard, MatCardContent, MatCardTitle} from '@angular/material/card';
+import {MatCard} from '@angular/material/card';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import {MatButton} from '@angular/material/button';
 import {Artista} from '../../model/artista';
 import {NgIf} from '@angular/common';
-
 
 @Component({
   selector: 'app-artista',
   imports: [
     MatCard,
-    MatCardTitle,
-    MatCardContent,
     ReactiveFormsModule,
-    MatFormField,
-    MatFormField,
-    MatLabel,
     MatInput,
-    MatFormField,
     MatInputModule,//add
     MatNativeDateModule,//add
     MatDatepickerModule,
-    MatButton,
     RouterLink,
     NgIf,
-    //add
   ],
   templateUrl: './artista.html',
   styleUrl: './artista.css'

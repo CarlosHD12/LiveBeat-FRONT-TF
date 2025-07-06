@@ -14,11 +14,11 @@
   <span class="spacer"></span>
 
   <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/login" class="action-button login">
+  <button (click)="triggerSplash($event)" class="action-button login">
     <span class="login-text">Iniciar Sesión</span>
   </button>
 
-  <button routerLink="/registrar" class="action-button register">
+  <button (click)="triggerSplash($event)" class="action-button register">
     <span class="register-text">Registrarse</span>
   </button>
 </mat-toolbar>
@@ -85,3 +85,4 @@
     </nav>
   </div>
 </mat-toolbar>
+<div class="splash-overlay" *ngIf="showSplash" [ngStyle]="splashStyles"></div>

@@ -1,12 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {HU22} from '../../model/hu22';
 import {
-  MatCell,
-  MatCellDef,
-  MatColumnDef,
-  MatHeaderCell,
-  MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
-  MatTable,
   MatTableDataSource
 } from '@angular/material/table';
 import {CommonModule, DatePipe, DecimalPipe, NgIf} from '@angular/common';
@@ -22,20 +16,9 @@ import {MatButton} from '@angular/material/button';
 @Component({
   selector: 'app-hu22',
   imports: [
-    MatColumnDef,
-    MatHeaderCell,
-    MatCell,
-    MatTable,
-    MatCellDef,
-    MatHeaderCellDef,
     DatePipe,
     DecimalPipe,
-    MatHeaderRow,
-    MatRow,
-    MatRowDef,
-    MatHeaderRowDef,
     MatCard,
-    MatCardTitle,
     MatCardContent,
     ReactiveFormsModule,
     MatFormField,

@@ -14,7 +14,7 @@
   <span class="spacer"></span>
 
   <!-- BOTONES DE ACCIÓN -->
-  <button routerLink="/artista" class="action-button login">
+  <button (click)="triggerSplashToRuta('/artista')" class="action-button login">
     <span class="login-text">+ Artista</span>
   </button>
 </mat-toolbar>
@@ -61,7 +61,7 @@
         </button>
 
         <!-- BOTÓN "Cerrar" -->
-        <button routerLink="/login" class="action-button cerrar">
+        <button (click)="triggerSplashToRuta('/login')" class="action-button cerrar">
           <span class="login-text">Cerrar Sesión</span>
         </button>
       </div>
@@ -86,9 +86,9 @@
             </mat-card-content>
 
             <!-- Botón Editar -->
-              <button [routerLink]="['/Cnuevo-edit', cancion.idC]" class="action-button login">
-                <span class="login-text">Editar</span>
-              </button>
+            <button (click)="triggerSplashToRuta(`/Cnuevo-edit/${cancion.idC}`)" class="action-button login">
+              <span class="login-text">Editar</span>
+            </button>
           </div>
         </div>
 
@@ -100,7 +100,6 @@
       <p class="mensaje-vacio">No se encontraron canciones registradas</p>
     </ng-template>
   </mat-toolbar>
-
 
   <!-- Sección de suscripciones -->
   <h2 class="titulo-suscripcion">Escoge tu suscripción</h2>
@@ -125,7 +124,7 @@
           <li class="plan-item">Recibe mezclas y recomendaciones cada semana.</li>
         </ul>
 
-        <button routerLink="/registro" class="action-button login plan-boton">
+        <button class="action-button login plan-boton">
           <span class="login-text">Probar gratis</span>
         </button>
       </div>
@@ -147,7 +146,7 @@
           <li class="plan-item">Prioridad en reservas y eventos destacados</li>
         </ul>
 
-        <button routerLink="/registro-premium" class="action-button login plan-boton">
+        <button class="action-button login plan-boton">
           <span class="login-text">Ir Premium</span>
         </button>
       </div>
@@ -191,4 +190,5 @@
       </nav>
     </div>
     </mat-toolbar>
-  </div>
+  <div class="splash-overlay-registro" *ngIf="showSplash2" [ngStyle]="splashStyles2"></div>
+</div>
