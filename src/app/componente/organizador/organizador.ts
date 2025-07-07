@@ -76,13 +76,13 @@ export class OrganizadorComponent {
         this.organizadorService.insert(organizador).subscribe((data: Organizador) => {
           this.organizadorService.actualizarLista();
           console.log("Datos actualizados:", data);
-          this.router.navigate(['/organizadores']);
+          this.router.navigate(['/organizador-inicio']);
         });
       } else {
         this.organizadorService.update(organizador).subscribe((data: Organizador) => {
           this.organizadorService.actualizarLista();
           console.log("Datos actualizados:", data);
-          this.router.navigate(['/organizadores']);
+          this.router.navigate(['/organizador-inicio']);
         });
       }
     } else {
